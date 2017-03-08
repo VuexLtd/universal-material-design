@@ -1,0 +1,106 @@
+@import '../core/variables';
+@import '../core/motion';
+@import '../core/elevation';
+
+$umd-button-touch-height: 48px !default;
+$umd-button-height: 36px !default;
+$umd-button-side-padding: 16px !default;
+
+$umd-button-height--dense: 32px !default;
+
+$umd-button-min-width--flat: 64px !default;
+
+.umd-button {
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    padding: (($umd-button-touch-height - $umd-button-height) / 2);
+    color: white; // TODO
+
+    &__inner {
+        height: $umd-button-height;
+        line-height: $umd-button-height;
+        padding: 0 16px;
+        border-radius: 2px;
+
+        font-family: $umd-font-family;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+
+        background: $umd-color-primary; // TODO
+    }
+
+    &--dense {
+        // Remove touch safe area on dense, desktop only buttons
+        padding: 0 4px;
+
+        .umd-button__inner {
+            height: $umd-button-height--dense;
+            line-height: $umd-button-height--dense;
+            font-size: 13px;
+        }
+    }
+
+    &--flat {
+        padding-left: $umd-button-side-padding / 2;
+        padding-right: $umd-button-side-padding / 2;
+        color: $umd-color-primary; // TODO
+
+        .umd-button__inner {
+            background: transparent; // TODO
+            transition: 280ms background $umd-motion--ease-in-out;
+
+            padding: 0 ($umd-button-side-padding / 2);
+            min-width: $umd-button-min-width--flat;
+        }
+
+        &:active {
+            .umd-button__inner {
+                // background: rgba(153, 153, 153, 0.40);
+            }
+        }
+
+        &.umd-button--disabled {
+            pointer-events: none;
+
+            color: rgba(0, 0, 0, .26);
+        }
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:not(.umd-button--flat) {
+
+        &.umd-button--disabled {
+            pointer-events: none;
+            color: rgba(0, 0, 0, .26);
+
+            .umd-button__inner {
+                background: rgba(0, 0, 0, .12);
+            }
+        }
+
+        .umd-button__inner {
+            transition: umd-elevation-transition-property-value(),
+                280ms background $umd-motion--ease-in-out;
+        }
+
+        &:hover {
+            .umd-button__inner {
+                @include umd-elevation(2);
+            }
+        }
+
+        &:active {
+            .umd-button__inner {
+                @include umd-elevation(8);
+                // background: darken($umd-color-primary, 6%);
+            }
+        }
+    }
+}

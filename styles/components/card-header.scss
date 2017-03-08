@@ -1,0 +1,31 @@
+$umd-card-header--height: 72px !default;
+$umd-card-header--padding: 16px !default;
+$umd-card-header--avatar-size: $umd-card-header--height - 2 * $umd-card-header--padding;
+
+.umd-card-header {
+    height: 72px;
+    padding: 16px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    &__avatar {
+        width: $umd-card-header--avatar-size;
+        height: $umd-card-header--avatar-size;
+        border-radius: 50%;
+        margin-right: 16px;
+    }
+
+    &__titles {
+        h1, h2 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        h2 {
+            color: rgba(0, 0, 0, .57);
+        }
+    }
+}

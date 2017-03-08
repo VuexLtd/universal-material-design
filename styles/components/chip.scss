@@ -1,0 +1,35 @@
+@import '../core/variables';
+
+$umd-chip-background: rgba(0, 0, 0, .08) !default;
+$umd-chip-height: 32px !default;
+
+.umd-chip {
+    background: $umd-chip-background;
+
+    font-size: 13px;
+    font-family: $umd-font-family;
+    color: rgba(0, 0, 0, .87);
+
+    display: inline-flex;
+    align-items: center;
+    height: $umd-chip-height;
+    border-radius: $umd-chip-height;
+
+    img {
+        border-radius: 50%;
+        width: $umd-chip-height;
+        height: $umd-chip-height;
+
+        + .umd-chip__text {
+            padding-left: 8px;
+        }
+    }
+
+    &__text {
+        padding: 0 12px;
+    }
+
+    + .umd-chip {
+        margin-left: 8px;
+    }
+}

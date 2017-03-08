@@ -1,0 +1,31 @@
+{
+  "name": "@material-design/universal",
+  "version": "0.0.0",
+  "description": "A set of material design components with packages for various frameworks",
+  "repository": "https://github.com/VuexLtd/universal-material-design",
+  "author": "James Birtles <james.birtles@vuex.io>",
+  "license": "MIT",
+  "scripts": {
+    "build": "gulp",
+    "build:preact": "gulp preact",
+    "demo:preact": "cd preact/demo && webpack-dev-server"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "css-loader": "^0.26.2",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-json-transform": "^0.4.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.1.5",
+    "node-sass": "^4.5.0",
+    "run-sequence": "^1.2.2",
+    "sass-loader": "^6.0.2",
+    "style-loader": "^0.13.2",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  }
+}

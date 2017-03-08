@@ -1,0 +1,27 @@
+@import '../core/variables';
+
+$umd-type-weights: (
+    light: 300,
+    regular: 400,
+    medium: 500,
+);
+
+
+@mixin umd-type($name, $size, $weight) {
+    .umd-type--#{$name} {
+        font-family: $umd-font-family;
+        font-weight: map-get($umd-type-weights, $weight);
+        font-size: $size;
+    }
+}
+
+@include umd-type('display-4', 112px, 'light');
+@include umd-type('display-3', 56px, 'regular');
+@include umd-type('display-2', 45px, 'regular');
+@include umd-type('display-1', 34px, 'regular');
+@include umd-type('headline', 24px, 'regular');
+@include umd-type('title', 20px, 'medium');
+@include umd-type('subheading', 15px, 'regular');
+@include umd-type('body-2', 13px, 'medium');
+@include umd-type('body-1', 13px, 'regular');
+@include umd-type('caption', 12px, 'regular');

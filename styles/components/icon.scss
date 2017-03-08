@@ -1,0 +1,53 @@
+$umd-icon-size: 24px;
+$umd-icon-padding: 12px;
+
+$umd-icon-sizes: (
+    normal: (clearance: 12px, size: 24px),
+    dense: (clearance: 10px, size: 20px),
+);
+
+@mixin umd-icon-size($size) {
+    @if map-has-key($umd-icon-sizes, $size) {
+        $sizing: map-get($umd-icon-sizes, $size);
+        &.umd-icon--size-#{$size} {
+            &:not(.umd-icon--no-clearance) {
+                padding: map-get($sizing, 'clearance');
+            }
+
+            font-size: map-get($sizing, 'size');
+        }
+    }
+
+    @else {
+        @warn "Invalid icon size `#{$size}`.";
+    }
+}
+
+.umd-icon {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+
+    color: rgba(0, 0, 0, .54); // TODO
+
+    @include umd-icon-size('normal');
+    @include umd-icon-size('dense');
+}
