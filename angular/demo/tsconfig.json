@@ -6,15 +6,18 @@
         "noImplicitAny": false,
         "sourceMap": true,
         "outDir": "dist",
-        "jsx": "react",
-        "jsxFactory": "h",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "lib": [
             "dom",
             "es2015"
         ],
         "baseUrl": ".",
         "paths": {
-            "@material-design/preact": ["../../dist/preact"]
-        }
+            "@material-design/angular": ["../../dist/angular"]
+        },
+        "typeRoots": [
+            "../node_modules/@types"
+        ]
     }
 }

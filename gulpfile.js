@@ -12,6 +12,7 @@ let version = '0.5.1';
 const dests = {
     main: './dist',
     preact: './dist/preact',
+    angular: './dist/angular',
 };
 
 gulp.task('default', done => {
@@ -20,6 +21,7 @@ gulp.task('default', done => {
         'styles',
         [
             'preact',
+            'angular',
         ],
         done
     );
@@ -41,8 +43,14 @@ gulp.task('styles', () => {
         .pipe(gulp.dest(dests.main));
 });
 
+
+/**
+ * Preact
+ */
 gulp.task('preact', done => {
     runSequence(
+        'styles',
+        ':preact:clean',
         [
             ':preact:ts',
             ':preact:copy',
@@ -58,6 +66,10 @@ gulp.task(':preact:ts', () => {
     return preactProject.src()
         .pipe(preactProject())
         .pipe(gulp.dest(dests.preact));
+});
+
+gulp.task(':preact:clean', () => {
+    return del(['./dist/preact']);
 });
 
 gulp.task(':preact:copy', () => {
@@ -83,4 +95,51 @@ gulp.task(':preact:package.json', () => {
             });
         }, 2))
         .pipe(gulp.dest(dests.preact));
+});
+
+
+/**
+ * Angular
+ */
+
+gulp.task('angular', done => {
+    runSequence(
+        'styles',
+        ':angular:clean',
+        [
+            ':angular:copy',
+            ':angular:styles',
+            ':angular:package.json',
+        ],
+        done
+    );
+});
+
+gulp.task(':angular:clean', () => {
+    return del(['./dist/angular']);
+});
+
+gulp.task(':angular:copy', () => {
+    return gulp.src(['./styles/**/*.scss', './angular/README.md'])
+        .pipe(gulp.dest(dests.angular));
+});
+
+gulp.task(':angular:styles', () => {
+    return gulp.src(['./dist/umd.css', './dist/umd.min.css'])
+        .pipe(rename(p => {
+            p.basename = p.basename.includes('min') ? 'styles.min' : 'styles'
+        }))
+        .pipe(gulp.dest(dests.angular));
+});
+
+gulp.task(':angular:package.json', () => {
+    return gulp.src(['./angular/package.json'])
+        .pipe(jsonTransform(data => {
+            return Object.assign({}, data, {
+                version: version,
+                devDependencies: undefined,
+                scripts: undefined,
+            });
+        }, 2))
+        .pipe(gulp.dest(dests.angular));
 });

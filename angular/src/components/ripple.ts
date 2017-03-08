@@ -1,58 +1,41 @@
-import { h, Component } from 'preact';
+import { Directive, ElementRef, AfterViewInit, OnDestroy, Input } from '@angular/core';
 
 import { Coord2d } from '../core/types';
 
-export interface RippleProps {
-    colour?: string;
-    color?: string;
-}
-
-export class Ripple extends Component<RippleProps, {}> {
-    static defaultProps: RippleProps = {
-        colour: 'rgba(0, 0, 0, .1)',
-    };
-
+@Directive({
+    selector: '[mdaRipple]',
+})
+export class MdaRipple implements AfterViewInit, OnDestroy {
     private ripples = new Set<RippleRef>();
+    private activeRipple: RippleRef;
 
-    constructor(props?: RippleProps) {
-        super(props);
+    @Input('mdaRippleColor')
+    public color: string = "rgba(0, 0, 0, .1)";
 
+    constructor(private elementRef: ElementRef) {
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
     }
 
-    public render() {
-        return <div class="umd-ripple-container"></div>;
-    }
+    public ngAfterViewInit() {
+        const element: HTMLElement = this.elementRef.nativeElement;
 
-    public shouldComponentUpdate() {
-        return false;
-    }
+        element.style.position = 'relative';
+        element.style.overflow = 'hidden';
 
-    public componentDidMount(): void {
-        const parent = this.base.parentElement;
-        parent.style.position = 'relative';
-        parent.style.overflow = 'hidden';
-
-        parent.addEventListener('mousedown', this.onMouseDown);
+        element.addEventListener('mousedown', this.onMouseDown);
         document.addEventListener('mouseup', this.onMouseUp);
     }
 
-    public componentWillUnmount(): void {
-        const parent = this.base.parentElement;
-        parent.style.position = '';
-        parent.style.overflow = '';
-
-        parent.removeEventListener('mousedown', this.onMouseDown);
+    public ngOnDestroy() {
         document.removeEventListener('mouseup', this.onMouseUp);
 
         this.ripples.forEach(ripple => ripple.remove());
     }
 
-    private activeRipple: RippleRef;
     private onMouseDown(evt: MouseEvent) {
-        const parent = this.base.parentElement;
-        this.activeRipple = this.add(Coord2d.fromMouseEvent(evt, 'offset', parent), this.props.color || this.props.colour);
+        const element: HTMLElement = this.elementRef.nativeElement;
+        this.activeRipple = this.add(Coord2d.fromMouseEvent(evt, 'offset', element), this.color);
         this.activeRipple.trigger(true);
 
         this.ripples.add(this.activeRipple);
@@ -67,7 +50,7 @@ export class Ripple extends Component<RippleProps, {}> {
 
     public add(pos: Coord2d, colour: string): RippleRef {
         const ripple = new RippleRef(pos, colour);
-        ripple.attach(this.base);
+        ripple.attach(this.elementRef.nativeElement, this.elementRef.nativeElement);
         return ripple;
     }
 }

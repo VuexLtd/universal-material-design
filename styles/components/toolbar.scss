@@ -6,6 +6,8 @@ $umd-toolbar-height--app: 64px !default;
 $umd-toolbar-side-padding: 24px !default;
 
 .umd-toolbar {
+    display: block;
+
     &--app {
         @include umd-elevation(4);
 

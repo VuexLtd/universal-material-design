@@ -5,10 +5,10 @@
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": true,
-        "outDir": "dist",
+        "outDir": "../dist/angular",
         "declaration": true,
-        "jsx": "react",
-        "jsxFactory": "h",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "lib": [
             "dom",
             "es2015"
@@ -17,5 +17,9 @@
     "exclude": [
         "node_modules",
         "demo"
-    ]
+    ],
+    "angularCompilerOptions": {
+        "strictMetadatEmit": true,
+        "skipTemplateCodegen": true
+    }
 }

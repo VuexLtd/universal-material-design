@@ -4,6 +4,7 @@
 .umd-card {
     @include umd-elevation(2);
 
+    display: block;
     background: white;
     border-radius: 2px;
     overflow: hidden;
@@ -19,6 +20,7 @@
     }
 
     &-text {
+        display: block;
         font-size: 14px;
         font-family: $umd-font-family;
         line-height: 24px;
@@ -27,6 +29,7 @@
     }
 
     &-title {
+        display: block;
         font-size: 24px;
         font-weight: normal;
         font-family: $umd-font-family;
@@ -41,6 +44,7 @@
     }
 
     &-subtitle {
+        display: block;
         font-size: 14px;
         font-weight: normal;
         font-family: $umd-font-family;
