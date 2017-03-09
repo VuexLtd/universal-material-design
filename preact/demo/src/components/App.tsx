@@ -6,6 +6,7 @@ import { CardDemo } from './demos/CardDemo';
 import { ChipDemo } from './demos/ChipDemo';
 import { DialogDemo } from './demos/DialogDemo';
 import { IconDemo } from './demos/IconDemo';
+import { MenuDemo } from './demos/MenuDemo';
 import { RippleDemo } from './demos/RippleDemo';
 import { TextFieldDemo } from './demos/TextFieldDemo';
 import { ToolbarDemo } from './demos/ToolbarDemo';
@@ -23,6 +24,7 @@ export class App extends Component<{}, {}> {
                     <ChipDemo />
                     <DialogDemo />
                     <IconDemo />
+                    <MenuDemo />
                     <RippleDemo />
                     <TextFieldDemo />
                     <ToolbarDemo />

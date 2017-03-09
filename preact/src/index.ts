@@ -4,6 +4,7 @@ export * from './components/Chip';
 export * from './components/Content';
 export * from './components/Dialog';
 export * from './components/Icon';
+export * from './components/Menu';
 export * from './components/Ripple';
 export * from './components/Toolbar';
 export * from './components/TextField';

@@ -7,6 +7,7 @@ export interface ButtonProps {
     dense?: boolean;
     flat?: boolean;
     disabled?: boolean;
+    icon?: boolean;
 
     onClick?: JSX.MouseEventHandler;
 }
@@ -17,6 +18,7 @@ export class Button extends Component<ButtonProps, {}> {
         dense: false,
         flat: false,
         disabled: false,
+        icon: false,
     };
 
     public render() {
@@ -26,6 +28,7 @@ export class Button extends Component<ButtonProps, {}> {
             dense,
             flat,
             disabled,
+            icon,
 
             onClick,
         } = this.props;
@@ -42,6 +45,10 @@ export class Button extends Component<ButtonProps, {}> {
 
         if (disabled) {
             btnClasses.push('umd-button--disabled');
+        }
+
+        if (icon) {
+            btnClasses.push('umd-button--icon');
         }
 
         return (

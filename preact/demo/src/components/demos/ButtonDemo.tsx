@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { Button } from '@material-design/preact';
+import { Button, Icon } from '@material-design/preact';
 
 export function ButtonDemo() {
     return <div>
@@ -18,6 +18,17 @@ export function ButtonDemo() {
             <h3 class="umd-type--headline">Flat</h3>
             <Button flat>Flat Button</Button>
             <Button flat disabled>Flat Button</Button>
+        </div>
+        <div>
+            <h3 class="umd-type--headline">Icon</h3>
+            <div>
+                <Button icon><Icon icon="add" /></Button>
+                <Button icon disabled><Icon icon="more_vert" /></Button>
+            </div>
+            <div>
+                <Button flat icon><Icon icon="send" /></Button>
+                <Button flat icon disabled><Icon icon="face" /></Button>
+            </div>
         </div>
     </div>
 }
