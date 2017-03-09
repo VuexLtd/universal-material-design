@@ -7,7 +7,8 @@ import {
     Provider,
     ComponentFactoryResolver,
     EmbeddedViewRef,
-    ApplicationRef
+    ApplicationRef,
+    TemplateRef
 } from '@angular/core';
 
 export interface Portal {
@@ -76,5 +77,37 @@ export class ComponentPortal<T> implements Portal {
         }
 
         return (<EmbeddedViewRef<any>> this.compRef.hostView).rootNodes[0];
+    }
+}
+
+export class TemplatePortal<T> implements Portal {
+    private view: EmbeddedViewRef<T>;
+
+    constructor(
+        private templateRef: TemplateRef<T>,
+        private viewRef: ViewContainerRef,
+        public context: T = <T> {},
+    ) {
+    }
+
+    public attach(container: HTMLElement) {
+        if (!this.view) {
+            this.view = this.viewRef.createEmbeddedView(this.templateRef, this.context);
+        }
+
+        this.view.rootNodes.forEach(node => container.appendChild(node));
+    }
+
+    public detach() {
+        if (!this.view) {
+            return;
+        }
+
+        this.view.rootNodes
+            .filter(node => !!node.parentElement)
+            .forEach(node => node.parentElement.removeChild(node));
+
+        this.view.destroy();
+        this.view = null;
     }
 }

@@ -57,16 +57,24 @@ $umd-button-min-width--flat: 64px !default;
             min-width: $umd-button-min-width--flat;
         }
 
-        &:active {
-            .umd-button__inner {
-                // background: rgba(153, 153, 153, 0.40);
-            }
-        }
-
         &.umd-button--disabled {
             pointer-events: none;
 
             color: rgba(0, 0, 0, .26);
+        }
+    }
+
+    &--icon {
+        .umd-button__inner {
+            border-radius: 50%;
+            padding: 0;
+            width: $umd-button-height;
+            min-width: 0;
+
+            // Though this element won't actually animate,
+            // will-change is used here to force it onto a new layer
+            // otherwise the ripple will exceed to bounds of the border-radius
+            will-change: transform;
         }
     }
 
@@ -99,8 +107,15 @@ $umd-button-min-width--flat: 64px !default;
         &:active {
             .umd-button__inner {
                 @include umd-elevation(8);
-                // background: darken($umd-color-primary, 6%);
             }
         }
+    }
+
+    .umd-icon {
+        color: inherit;
+        position: relative;
+        top: 4px;
+        padding: 0 !important;
+        font-size: 18px !important;
     }
 }

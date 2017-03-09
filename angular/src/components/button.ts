@@ -23,6 +23,11 @@ export class MdaButton {
     }
 
     @Input()
+    public set icon(icon: boolean) {
+        this.isIcon = icon !== false && icon !== null;
+    }
+
+    @Input()
     public set disabled(disabled: boolean) {
         this.isDisabled = disabled !== false && disabled !== null;
     }
@@ -35,4 +40,7 @@ export class MdaButton {
 
     @HostBinding('class.umd-button--disabled')
     public isDisabled = false;
+
+    @HostBinding('class.umd-button--icon')
+    public isIcon = false;
 }

@@ -24,6 +24,7 @@ import {
     MdaDialogRef
 } from './components/dialog';
 import { MdaIcon } from './components/icon';
+import { MdaMenu, MdaMenuTrigger, MdaMenuItem } from './components/menu';
 import { MdaRipple } from './components/ripple';
 import { MdaTextField } from './components/textfield';
 import { MdaToolbar } from './components/toolbar';
@@ -50,6 +51,9 @@ import { MdaToolbar } from './components/toolbar';
         MdaDialogContent,
         MdaDialogTitle,
         MdaIcon,
+        MdaMenu,
+        MdaMenuTrigger,
+        MdaMenuItem,
         MdaRipple,
         MdaTextField,
         MdaToolbar,
@@ -70,6 +74,9 @@ import { MdaToolbar } from './components/toolbar';
         MdaDialogContent,
         MdaDialogTitle,
         MdaIcon,
+        MdaMenu,
+        MdaMenuTrigger,
+        MdaMenuItem,
         MdaRipple,
         MdaTextField,
         MdaToolbar,
@@ -106,6 +113,9 @@ export {
     MdaDialogContent,
     MdaDialogTitle,
     MdaIcon,
+    MdaMenu,
+    MdaMenuTrigger,
+    MdaMenuItem,
     MdaRipple,
     MdaTextField,
     MdaToolbar,
