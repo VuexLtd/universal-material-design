@@ -21,11 +21,11 @@ export const MDA_INPUT_VALUE_ACCESSOR: Provider = {
                 {{ label }}
             </span>
             <input
+                *ngIf="type !== 'textarea'"
                 class="umd-textfield__input"
-                [type]="type"
                 [autofocus]="autofocus"
                 [disabled]="disabled"
-                [type]="inputType"
+                [type]="type"
                 [readonly]="readonly"
                 [required]="required"
                 [attr.autocomplete]="autocomplete"
@@ -43,6 +43,29 @@ export const MDA_INPUT_VALUE_ACCESSOR: Provider = {
                 [(ngModel)]="inputValue"
                 (focus)="onFocus($event)"
                 (blur)="onBlur($event)">
+            <textarea
+                *ngIf="type === 'textarea'"
+                class="umd-textfield__input"
+                [autofocus]="autofocus"
+                [disabled]="disabled"
+                [readonly]="readonly"
+                [required]="required"
+                [attr.autocomplete]="autocomplete"
+                [attr.autocorrect]="autocorrect"
+                [attr.autocapitalize]="autocapitalize"
+                [attr.list]="list"
+                [attr.max]="max"
+                [attr.maxlength]="maxlength"
+                [attr.min]="min"
+                [attr.minlength]="minlength"
+                [spellcheck]="spellcheck"
+                [attr.step]="step"
+                [attr.tabindex]="tabindex"
+                [attr.name]="name"
+                [(ngModel)]="inputValue"
+                (focus)="onFocus($event)"
+                (blur)="onBlur($event)">
+            </textarea>
             <span class="umd-textfield__underline"></span>
         </label>
     `,

@@ -5,25 +5,21 @@
 .umd-textfield {
     position: relative;
     display: block;
-    height: 72px;
+    padding-bottom: 23px;
 
     &__label {
         display: block;
         font-size: 16px;
 
-        position: absolute;
-        top: 36px;
-        left: 0;
-        right: 0;
         pointer-events: none;
 
-        transform: translateY(0) scale(1);
+        transform: translateY(100%) scale(1);
         transform-origin: left;
         transition: transform $umd-motion--ease-in-out 0.2s,
             color $umd-motion--ease-in-out 0.2s;
 
         &--floating {
-            transform: translateY(-22px) scale(0.75);
+            transform: translateY(0) scale(0.75);
         }
     }
 
@@ -33,21 +29,22 @@
         border: 0;
         font-size: 16px;
         width: 100%;
-
-        position: relative;
-        top: 38px;
+        padding: 0;
+        font-family: $umd-font-family;
+        margin-bottom: 4px;
 
         &:focus {
             outline: 0;
         }
     }
 
+    textarea {
+        resize: vertical;
+        min-height: 64px;
+    }
+
     &__underline {
         display: block;
-        position: absolute;
-        top: 63px;
-        left: 0;
-        right: 0;
         border-bottom: 1px solid;
 
         &::after {

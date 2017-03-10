@@ -8,6 +8,7 @@ export function TextFieldDemo() {
             <TextField label="Label text" />
             <TextField variant="primary" label="Label text" />
             <TextField variant="accent" label="Label text" />
+            <TextField type="textarea" variant="primary" label="Textarea" />
             <TextField label="Disabled input" disabled value="This should be disabled" />
         </div>
     </div>

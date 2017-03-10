@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 
 export interface TextFieldProps {
-    type?: 'text' | 'password' | 'email' | 'number';
+    type?: 'text' | 'password' | 'email' | 'number' | 'textarea';
     label?: string;
     disabled?: boolean;
     variant?: string;
@@ -83,18 +83,31 @@ export class TextField extends Component<TextFieldProps, TextFieldState> {
             textfieldClasses.push('umd-textfield--disabled');
         }
 
+        let input;
+        if (type === 'textarea') {
+            input = <textarea
+                class="umd-textfield__input"
+                name={this.props.name}
+                onInput={this.onInput}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+            >value</textarea>
+        } else {
+            input = <input
+                class="umd-textfield__input"
+                type={type}
+                value={value}
+                name={this.props.name}
+                onInput={this.onInput}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+            />
+        }
+
         return (
             <label class={textfieldClasses.join(' ')} data-umd-variant={variant}>
                 <span class={labelClasses.join(' ')}>{label}</span>
-                <input
-                    class="umd-textfield__input"
-                    type={type}
-                    value={value}
-                    name={this.props.name}
-                    onInput={this.onInput}
-                    onFocus={this.onFocus}
-                    onBlur={this.onBlur}
-                />
+                {input}
                 <span class="umd-textfield__underline"></span>
             </label>
         )
