@@ -1,0 +1,23 @@
+@import './utils';
+
+@mixin button-theme($theme) {
+    .umd-button {
+        color: umd-theme-color($theme, primary, 500, true);
+
+        &__inner {
+            background: umd-theme-color($theme, primary, 500);
+        }
+
+        &--flat {
+            color: umd-theme-color($theme, primary, 500);
+        }
+
+        &--disabled {
+            color: umd-theme-color($theme, text, disabled);
+        }
+
+        &:not(.umd-button--flat).umd-button--disabled .umd-button__inner {
+            background: umd-theme-color($theme, standard, 300);
+        }
+    }
+}

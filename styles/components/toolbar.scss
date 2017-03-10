@@ -11,8 +11,6 @@ $umd-toolbar-side-padding: 24px !default;
     &--app {
         @include umd-elevation(4);
 
-        background: $umd-color-primary; // TODO
-        color: white; // TODO
         height: $umd-toolbar-height--app;
         line-height: $umd-toolbar-height--app;
 

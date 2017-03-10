@@ -1,0 +1,8 @@
+@import './utils';
+
+@mixin menu-theme($theme) {
+    .umd-menu {
+        color: umd-theme-color($theme, text, primary);
+        background: umd-theme-color($theme, standard, 100);
+    }
+}

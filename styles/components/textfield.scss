@@ -10,7 +10,6 @@
     &__label {
         display: block;
         font-size: 16px;
-        color: rgba(0, 0, 0, .38);
 
         position: absolute;
         top: 36px;
@@ -34,7 +33,6 @@
         border: 0;
         font-size: 16px;
         width: 100%;
-        color: rgba(0, 0, 0, .87);
 
         position: relative;
         top: 38px;
@@ -50,7 +48,7 @@
         top: 63px;
         left: 0;
         right: 0;
-        border-bottom: 1px solid rgba(0, 0, 0, .15);
+        border-bottom: 1px solid;
 
         &::after {
             content: '';
@@ -58,23 +56,12 @@
             position: relative;
             top: 2px;
             height: 2px;
-            background: $umd-color-primary;
             opacity: 0;
             transition: opacity $umd-motion--ease-in-out 0.2s;
         }
     }
 
-    &:hover {
-        .umd-textfield__label {
-            color: rgba(0, 0, 0, .54);
-        }
-    }
-
     &--focused {
-        .umd-textfield__label {
-            color: $umd-color-primary !important;
-        }
-
         .umd-textfield__underline {
             &::after {
                 opacity: 1;
@@ -84,10 +71,6 @@
 
     &--disabled {
         pointer-events: none;
-
-        .umd-textfield__input {
-            color: rgba(0, 0, 0, .38);
-        }
 
         .umd-textfield__underline {
             border-bottom-style: dashed;

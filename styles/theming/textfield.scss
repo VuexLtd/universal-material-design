@@ -1,0 +1,36 @@
+@import './utils';
+
+@mixin textfield-theme($theme) {
+    .umd-textfield {
+        &__label {
+            color: umd-theme-color($theme, text, disabled);
+        }
+
+        &__input {
+            color: umd-theme-color($theme, text, primary);
+        }
+
+        &__underline {
+            border-bottom-color: map-get($theme, divider);
+
+            &::after {
+                background: umd-theme-color($theme, primary, 500);
+            }
+        }
+
+        &:hover {
+            .umd-textfield__label {
+                color: umd-theme-color($theme, text, secondary);
+            }
+        }
+
+        &--focused {
+            .umd-textfield__label {
+                color: umd-theme-color($theme, primary, 500) !important;
+            }
+        }
+        &--disabled .umd-textfield__input {
+            color: umd-theme-color($theme, text, disabled);
+        }
+    }
+}

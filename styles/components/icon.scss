@@ -46,8 +46,6 @@ $umd-icon-sizes: (
     /* Support for IE. */
     font-feature-settings: 'liga';
 
-    color: rgba(0, 0, 0, .54); // TODO
-
     @include umd-icon-size('normal');
     @include umd-icon-size('dense');
 }

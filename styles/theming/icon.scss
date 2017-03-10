@@ -1,0 +1,7 @@
+@import './utils';
+
+@mixin icon-theme($theme) {
+    .umd-icon {
+        color: umd-theme-color($theme, icon, active);
+    }
+}

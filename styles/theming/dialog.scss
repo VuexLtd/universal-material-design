@@ -1,0 +1,8 @@
+@import './utils';
+
+@mixin dialog-theme($theme) {
+    .umd-dialog {
+        background: umd-theme-color($theme, standard, 100);
+        color: umd-theme-color($theme, text, primary);
+    }
+}

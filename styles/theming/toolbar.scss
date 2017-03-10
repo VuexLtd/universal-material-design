@@ -1,0 +1,10 @@
+@import './utils';
+
+@mixin toolbar-theme($theme) {
+    .umd-toolbar {
+        &--app {
+            color: umd-theme-color($theme, primary, 500, true);
+            background: umd-theme-color($theme, primary, 500);
+        }
+    }
+}

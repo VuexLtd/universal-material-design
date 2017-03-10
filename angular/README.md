@@ -27,14 +27,5 @@ If using sass, you can import the sass directly from the src folder.
 ```
 
 ## Theming
-There is very limited theming support right now,
-and the situation will improve as this module develops.
 
-For now, you should be able to override the sass variables before importing the styles.
-
-E.g.
-```scss
-$umd-color-primary: #FF5722;
-
-@import '~@material-design/angular/styles';
-```
+See the [theming guide](https://github.com/VuexLtd/universal-material-design/wiki/Theming)

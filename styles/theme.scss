@@ -1,0 +1,66 @@
+@import './core/colors';
+@import './theming/button';
+@import './theming/card';
+@import './theming/chip';
+@import './theming/dialog';
+@import './theming/icon';
+@import './theming/menu';
+@import './theming/textfield';
+@import './theming/toolbar';
+
+@mixin material-theme($theme) {
+    @include button-theme($theme);
+    @include card-theme($theme);
+    @include chip-theme($theme);
+    @include dialog-theme($theme);
+    @include icon-theme($theme);
+    @include menu-theme($theme);
+    @include textfield-theme($theme);
+    @include toolbar-theme($theme);
+}
+
+@function light-theme($primary, $accent) {
+    @return (
+        text: (
+            primary: rgba(0, 0, 0, .87),
+            secondary: rgba(0, 0, 0, .54),
+            disabled: rgba(0, 0, 0, .38),
+        ),
+        icon: (
+            active: rgba(0, 0, 0, .54),
+            inactive: rgba(0, 0, 0, .38),
+        ),
+        standard: (
+            100: #FFFFFF,
+            200: #FAFAFA,
+            300: #F5F5F5,
+            400: #EAEAEA,
+        ),
+        divider: rgba(0, 0, 0, .12),
+        primary: $primary,
+        accent: $accent,
+    );
+}
+
+@function dark-theme($primary, $accent) {
+    @return (
+        text: (
+            primary: #FFFFFF,
+            secondary: rgba(255, 255, 255, .7),
+            disabled: rgba(255, 255, 255, .5),
+        ),
+        icon: (
+            active: #FFFFFF,
+            inactive: rgba(255, 255, 255, .5),
+        ),
+        standard: (
+            100: #424242,
+            200: #303030,
+            300: #212121,
+            400: #000000,
+        ),
+        divider: rgba(255, 255, 255, .12),
+        primary: $primary,
+        accent: $accent,
+    );
+}

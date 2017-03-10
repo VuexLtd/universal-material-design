@@ -1,8 +1,16 @@
-@import '~@material-design/angular/styles';
+@import '../../../styles/styles';
+@import '../../../styles/theme';
+
+$app-primary: umd-palette(blue);
+$app-accent: umd-palette(deep-orange);
+$app-theme: light-theme($app-primary, $app-accent);
+
+@include material-theme($app-theme);
 
 body {
     font-family: "Roboto", sans-serif;
-    background: #EEEEEE;
+    color: umd-theme-color($app-theme, text, primary);
+    background: umd-theme-color($app-theme, standard, 200);
     padding: 0;
     margin: 0;
 }

@@ -5,7 +5,6 @@
     @include umd-elevation(2);
 
     display: block;
-    background: white;
     border-radius: 2px;
     overflow: hidden;
 
@@ -52,7 +51,6 @@
         font-size: 14px;
         font-weight: normal;
         font-family: $umd-font-family;
-        color: rgba(0, 0, 0, .57);
         padding: 16px;
         margin: 0;
     }

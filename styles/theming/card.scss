@@ -1,0 +1,18 @@
+@import './utils';
+
+@mixin card-theme($theme) {
+    .umd-card {
+        background: umd-theme-color($theme, standard, 100);
+        color: umd-theme-color($theme, text, primary);
+
+        &-subtitle {
+            color: umd-theme-color($theme, text, secondary);
+        }
+
+        &-header {
+            &__titles h2 {
+                color: umd-theme-color($theme, text, secondary);
+            }
+        }
+    }
+}

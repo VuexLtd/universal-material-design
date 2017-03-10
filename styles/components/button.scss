@@ -17,7 +17,6 @@ $umd-button-min-width--flat: 64px !default;
     cursor: pointer;
 
     padding: (($umd-button-touch-height - $umd-button-height) / 2);
-    color: white; // TODO
 
     &__inner {
         height: $umd-button-height;
@@ -29,8 +28,6 @@ $umd-button-min-width--flat: 64px !default;
         font-size: 14px;
         font-weight: 500;
         text-transform: uppercase;
-
-        background: $umd-color-primary; // TODO
     }
 
     &--dense {
@@ -47,20 +44,13 @@ $umd-button-min-width--flat: 64px !default;
     &--flat {
         padding-left: $umd-button-side-padding / 2;
         padding-right: $umd-button-side-padding / 2;
-        color: $umd-color-primary; // TODO
 
         .umd-button__inner {
-            background: transparent; // TODO
+            background: transparent;
             transition: 280ms background $umd-motion--ease-in-out;
 
             padding: 0 ($umd-button-side-padding / 2);
             min-width: $umd-button-min-width--flat;
-        }
-
-        &.umd-button--disabled {
-            pointer-events: none;
-
-            color: rgba(0, 0, 0, .26);
         }
     }
 
@@ -82,17 +72,11 @@ $umd-button-min-width--flat: 64px !default;
         outline: 0;
     }
 
+    &--disabled {
+        pointer-events: none;
+    }
+
     &:not(.umd-button--flat) {
-
-        &.umd-button--disabled {
-            pointer-events: none;
-            color: rgba(0, 0, 0, .26);
-
-            .umd-button__inner {
-                background: rgba(0, 0, 0, .12);
-            }
-        }
-
         .umd-button__inner {
             transition: umd-elevation-transition-property-value(),
                 280ms background $umd-motion--ease-in-out;

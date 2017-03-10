@@ -1,0 +1,16 @@
+@import '../core/colors';
+
+@function umd-theme-color($theme, $type, $variant, $text: false) {
+    $palette: map-get($theme, $type);
+    $color: map-get($palette, $variant);
+
+    @if $text {
+        @return map-get($umd-text-colors, nth($color, 2));
+    }
+
+    @if type-of($color) == list {
+        @return nth($color, 1);
+    }
+
+    @return $color;
+}

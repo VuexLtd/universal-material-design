@@ -1,0 +1,8 @@
+@import './utils';
+
+@mixin chip-theme($theme) {
+    .umd-chip {
+        color: umd-theme-color($theme, text, primary);
+        background: umd-theme-color($theme, standard, 300);
+    }
+}
