@@ -1,4 +1,14 @@
 <h2 class="umd-type--display-1">Dialogs</h2>
 <div>
-    <button mdaRaisedButton (click)="showDialog()">Show Dialog</button>
+    <button mdaRaisedButton (click)="showDialog()">Show Component Dialog</button>
+    <button mdaRaisedButton (click)="showDialog(dialog)">Show Template Dialog</button>
 </div>
+
+<template #dialog>
+    <mda-dialog-title>Template Based Dialog!</mda-dialog-title>
+    <mda-dialog-content>This dialog was created using template ref.</mda-dialog-content>
+    <mda-dialog-actions>
+        <button mdaButton (click)="dialogRef.close()">Cancel</button>
+        <button mdaButton (click)="dialogRef.close()">Ok</button>
+    </mda-dialog-actions>
+</template>

@@ -9,19 +9,29 @@ import {
     Injectable,
     Injector,
     Type,
-    ComponentFactoryResolver
+    ComponentFactoryResolver,
+    TemplateRef,
+    ViewContainerRef,
 } from '@angular/core';
 
-import { ComponentPortal } from '../core/portal';
+import { Portal, ComponentPortal, TemplatePortal } from '../core/portal';
 
 @Injectable()
 export class MdaDialog {
     constructor(private injector: Injector) {
     }
 
-    public open<T>(component: Type<T>) {
+    public open<T>(component: Type<T> | TemplateRef<T>): MdaDialogRef {
         const dialog = new ComponentPortal(MdaDialogContainer, this.injector);
-        const content = new ComponentPortal(component, this.injector);
+
+        let content: Portal;
+
+        if (component instanceof TemplateRef) {
+            component.createEmbeddedView
+            content = new TemplatePortal(component, null);
+        } else {
+            content = new ComponentPortal(component, this.injector);
+        }
 
         const dialogRef = new MdaDialogRef(() => {
             content.detach();
@@ -30,10 +40,14 @@ export class MdaDialog {
         const dialogRefProvider = { provide: MdaDialogRef, useValue: dialogRef };
 
         dialog.inject(dialogRefProvider);
-        content.inject(dialogRefProvider);
+        if (content instanceof ComponentPortal) {
+            content.inject(dialogRefProvider);
+        }
 
         dialog.attach(document.body);
-        content.attach(dialog.instance.dialogElementRef.nativeElement);
+        dialog.instance.attachPortal(content);
+
+        return dialogRef;
     }
 }
 
@@ -60,7 +74,11 @@ export class MdaDialogContainer {
     @ViewChild('dialog', { read: ElementRef })
     public dialogElementRef: ElementRef;
 
-    constructor(private elementRef: ElementRef, private dialogRef: MdaDialogRef) {
+    constructor(
+        private elementRef: ElementRef,
+        private dialogRef: MdaDialogRef,
+        private viewRef: ViewContainerRef,
+    ) {
     }
 
     @HostListener('click', ['$event.target'])
@@ -69,6 +87,14 @@ export class MdaDialogContainer {
             console.log('should close dialog');
             this.dialogRef.close();
         }
+    }
+
+    public attachPortal(portal: Portal) {
+        if (!(<any> portal).viewRef) {
+            (<any> portal).viewRef = this.viewRef;
+        }
+
+        portal.attach(this.dialogElementRef.nativeElement);
     }
 }
 
