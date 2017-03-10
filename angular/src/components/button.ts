@@ -43,4 +43,8 @@ export class MdaButton {
 
     @HostBinding('class.umd-button--icon')
     public isIcon = false;
+
+    @Input()
+    @HostBinding('attr.data-umd-variant')
+    public mdaVariant: string = 'default';
 }

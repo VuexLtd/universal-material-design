@@ -4,6 +4,7 @@ export interface TextFieldProps {
     type?: 'text' | 'password' | 'email' | 'number';
     label?: string;
     disabled?: boolean;
+    variant?: string;
 
     value?: string;
     name?: string;
@@ -21,6 +22,7 @@ export class TextField extends Component<TextFieldProps, TextFieldState> {
         label: null,
         disabled: false,
         value: '',
+        variant: 'default',
         onInput: () => undefined,
     };
 
@@ -58,6 +60,7 @@ export class TextField extends Component<TextFieldProps, TextFieldState> {
             type,
             label,
             disabled,
+            variant,
         } = this.props;
 
         const {
@@ -81,7 +84,7 @@ export class TextField extends Component<TextFieldProps, TextFieldState> {
         }
 
         return (
-            <label class={textfieldClasses.join(' ')}>
+            <label class={textfieldClasses.join(' ')} data-umd-variant={variant}>
                 <span class={labelClasses.join(' ')}>{label}</span>
                 <input
                     class="umd-textfield__input"

@@ -16,7 +16,7 @@ export class App extends Component<{}, {}> {
     public render() {
         return (
             <div>
-                <Toolbar>Preact Material Design</Toolbar>
+                <Toolbar variant="primary">Preact Material Design</Toolbar>
                 <Content>
                     <p>A set of components for Preact that conform to the material design guidlines.</p>
                     <ButtonDemo />

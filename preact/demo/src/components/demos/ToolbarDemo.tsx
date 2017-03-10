@@ -7,6 +7,8 @@ export function ToolbarDemo() {
         <div>
             <h3 class="umd-type--headline">App</h3>
             <Toolbar>App Toolbar</Toolbar>
+            <Toolbar variant="primary">App Toolbar</Toolbar>
+            <Toolbar variant="accent">App Toolbar</Toolbar>
         </div>
     </div>
 }

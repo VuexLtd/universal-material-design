@@ -3,8 +3,22 @@
 @mixin toolbar-theme($theme) {
     .umd-toolbar {
         &--app {
-            color: umd-theme-color($theme, primary, 500, true);
-            background: umd-theme-color($theme, primary, 500);
+            color: umd-theme-color($theme, text, primary);
+            background: umd-theme-color($theme, standard, 300);
+        }
+
+        &[data-umd-variant=primary] {
+            &.umd-toolbar--app {
+                color: umd-theme-color($theme, primary, 500, true);
+                background: umd-theme-color($theme, primary, 500);
+            }
+        }
+
+        &[data-umd-variant=accent] {
+            &.umd-toolbar--app {
+                color: umd-theme-color($theme, accent, A400, true);
+                background: umd-theme-color($theme, accent, A400);
+            }
         }
     }
 }

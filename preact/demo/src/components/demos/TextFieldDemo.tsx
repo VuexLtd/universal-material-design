@@ -6,6 +6,8 @@ export function TextFieldDemo() {
         <h2 class="umd-type--display-1">Text Fields</h2>
         <div>
             <TextField label="Label text" />
+            <TextField variant="primary" label="Label text" />
+            <TextField variant="accent" label="Label text" />
             <TextField label="Disabled input" disabled value="This should be disabled" />
         </div>
     </div>

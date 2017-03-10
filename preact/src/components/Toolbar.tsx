@@ -1,18 +1,21 @@
 import { h, Component } from 'preact';
 
 export interface ToolbarProps {
-    type?: 'app',
+    type?: 'app';
+    variant?: string;
 }
 
 export class Toolbar extends Component<ToolbarProps, {}> {
     static defaultProps: ToolbarProps = {
         type: 'app',
+        variant: 'default',
     };
 
     public render() {
         const {
             children,
             type,
+            variant,
         } = this.props;
 
         const toolbarClasses = [
@@ -21,7 +24,7 @@ export class Toolbar extends Component<ToolbarProps, {}> {
         ];
 
         return (
-            <div class={toolbarClasses.join(' ')}>
+            <div class={toolbarClasses.join(' ')} data-umd-variant={variant}>
                 {children}
             </div>
         )

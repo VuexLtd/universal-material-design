@@ -28,7 +28,6 @@ import { MdaMenu, MdaMenuTrigger, MdaMenuItem } from './components/menu';
 import { MdaRipple } from './components/ripple';
 import { MdaTextField } from './components/textfield';
 import { MdaToolbar } from './components/toolbar';
-import { MdaVariant } from './components/variant';
 
 @NgModule({
     imports: [
@@ -58,7 +57,6 @@ import { MdaVariant } from './components/variant';
         MdaRipple,
         MdaTextField,
         MdaToolbar,
-        MdaVariant,
     ],
     exports: [
         MdaButton,
@@ -82,7 +80,6 @@ import { MdaVariant } from './components/variant';
         MdaRipple,
         MdaTextField,
         MdaToolbar,
-        MdaVariant,
     ],
     entryComponents: [MdaDialogContainer]
 })
@@ -122,5 +119,4 @@ export {
     MdaRipple,
     MdaTextField,
     MdaToolbar,
-    MdaVariant,
 }

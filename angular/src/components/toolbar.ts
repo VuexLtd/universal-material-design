@@ -12,5 +12,9 @@ export class MdaToolbar {
     @DynamicClass('umd-toolbar--$1')
     public type: ToolbarType = 'app';
 
+    @Input()
+    @HostBinding('attr.data-umd-variant')
+    public variant: string = 'default';
+
     constructor(private elementRef: ElementRef) {}
 }

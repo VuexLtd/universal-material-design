@@ -14,7 +14,7 @@
             border-bottom-color: map-get($theme, divider);
 
             &::after {
-                background: umd-theme-color($theme, primary, 500);
+                background: umd-theme-color($theme, standard, 300);
             }
         }
 
@@ -24,13 +24,28 @@
             }
         }
 
-        &--focused {
-            .umd-textfield__label {
+        &--disabled .umd-textfield__input {
+            color: umd-theme-color($theme, text, disabled);
+        }
+
+        &[data-umd-variant=primary] {
+            .umd-textfield__underline::after {
+                background: umd-theme-color($theme, primary, 500);
+            }
+
+            &.umd-textfield--focused .umd-textfield__label {
                 color: umd-theme-color($theme, primary, 500) !important;
             }
         }
-        &--disabled .umd-textfield__input {
-            color: umd-theme-color($theme, text, disabled);
+
+        &[data-umd-variant=accent] {
+            .umd-textfield__underline::after {
+                background: umd-theme-color($theme, accent, 500);
+            }
+
+            &.umd-textfield--focused .umd-textfield__label {
+                color: umd-theme-color($theme, accent, 500) !important;
+            }
         }
     }
 }

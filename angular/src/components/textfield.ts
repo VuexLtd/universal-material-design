@@ -12,6 +12,7 @@ export const MDA_INPUT_VALUE_ACCESSOR: Provider = {
     template: `
         <label
             class="umd-textfield"
+            [attr.data-umd-variant]="variant"
             [class.umd-textfield--disabled]="isDisabled"
             [class.umd-textfield--focused]="hasFocus">
             <span
@@ -50,6 +51,9 @@ export const MDA_INPUT_VALUE_ACCESSOR: Provider = {
 export class MdaTextField implements ControlValueAccessor {
     @Input() public label: string = '';
     public value: string = '';
+
+    @Input()
+    public variant: string = 'default';
 
     @Input() public autocomplete: string;
     @Input() public autocorrect: string;
