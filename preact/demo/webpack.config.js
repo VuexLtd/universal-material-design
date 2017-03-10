@@ -27,19 +27,17 @@ module.exports = {
             "node_modules",
         ],
         alias: {
-            '@material-design/preact': resolve(__dirname, '../../dist/preact'),
+            '@material-design/preact': resolve(__dirname, '../src'),
         }
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
-                include: [paths.src],
                 use: ['awesome-typescript-loader'],
             },
             {
                 test: /\.scss$/,
-                include: [paths.src],
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             }
         ],

@@ -27,7 +27,7 @@ module.exports = {
             "node_modules",
         ],
         alias: {
-            '@material-design/angular': resolve(__dirname, '../../dist/angular'),
+            '@material-design/angular': resolve(__dirname, '../src'),
         }
     },
     module: {

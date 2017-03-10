@@ -14,7 +14,7 @@
         ],
         "baseUrl": ".",
         "paths": {
-            "@material-design/preact": ["../../dist/preact"]
+            "@material-design/preact": ["../src"]
         }
     }
 }

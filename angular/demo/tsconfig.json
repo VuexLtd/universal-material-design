@@ -14,7 +14,7 @@
         ],
         "baseUrl": ".",
         "paths": {
-            "@material-design/angular": ["../../dist/angular"]
+            "@material-design/angular": ["../src"]
         },
         "typeRoots": [
             "../node_modules/@types"

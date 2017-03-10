@@ -2,14 +2,14 @@
 
 @mixin button-theme($theme) {
     .umd-button {
-        color: umd-theme-color($theme, primary, 500, true);
+        color: umd-theme-color($theme, text, primary);
 
         &__inner {
-            background: umd-theme-color($theme, primary, 500);
+             background: umd-theme-color($theme, standard, 400);
         }
 
         &--flat {
-            color: umd-theme-color($theme, primary, 500);
+            color: umd-theme-color($theme, text, primary);
         }
 
         &--disabled {
@@ -18,6 +18,34 @@
 
         &:not(.umd-button--flat).umd-button--disabled .umd-button__inner {
             background: umd-theme-color($theme, standard, 300);
+        }
+
+        &[data-umd-variant=primary] {
+            &:not(.umd-button--flat) {
+                color: umd-theme-color($theme, primary, 500, true);
+
+                .umd-button__inner {
+                    background: umd-theme-color($theme, primary, 500);
+                }
+            }
+
+            &.umd-button--flat {
+                color: umd-theme-color($theme, primary, 500);
+            }
+        }
+
+        &[data-umd-variant=accent] {
+            &:not(.umd-button--flat) {
+                color: umd-theme-color($theme, accent, A400, true);
+
+                .umd-button__inner {
+                    background: umd-theme-color($theme, accent, A400);
+                }
+            }
+
+            &.umd-button--flat {
+                color: umd-theme-color($theme, accent, A400);
+            }
         }
     }
 }

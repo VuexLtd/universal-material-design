@@ -8,6 +8,7 @@ export interface ButtonProps {
     flat?: boolean;
     disabled?: boolean;
     icon?: boolean;
+    variant?: string;
 
     onClick?: JSX.MouseEventHandler;
 }
@@ -19,6 +20,7 @@ export class Button extends Component<ButtonProps, {}> {
         flat: false,
         disabled: false,
         icon: false,
+        variant: 'default',
     };
 
     public render() {
@@ -29,6 +31,7 @@ export class Button extends Component<ButtonProps, {}> {
             flat,
             disabled,
             icon,
+            variant,
 
             onClick,
         } = this.props;
@@ -55,7 +58,8 @@ export class Button extends Component<ButtonProps, {}> {
             <button
                 class={btnClasses.join(' ')}
                 type={type}
-                onClick={onClick}>
+                onClick={onClick}
+                data-umd-variant={variant}>
                 <div class="umd-button__inner">
                     {children}
                     <Ripple />
