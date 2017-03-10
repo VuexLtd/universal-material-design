@@ -8,7 +8,7 @@ const cleanCSS = require('gulp-clean-css');
 const del = require('del');
 
 // TODO: populate
-let version = '0.5.1';
+let version = require('./package.json').version;
 const dests = {
     main: './dist',
     preact: './dist/preact',
