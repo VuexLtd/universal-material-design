@@ -6,6 +6,14 @@ import { HostClasses } from '../core/classes';
     selector: 'mda-card'
 })
 export class MdaCard {
+    @HostBinding('class.umd-card--full-width')
+    public isFullWidth = false;
+
+    @Input()
+    public set fill(fill: boolean) {
+        this.isFullWidth = fill !== false && fill !== null;
+    }
+
     constructor(private elementRef: ElementRef) {}
 }
 

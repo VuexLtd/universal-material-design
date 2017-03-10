@@ -1,9 +1,13 @@
 import { h, Component } from 'preact';
 
-export class Card extends Component<{ style?: string | { [key: string]: any } }, {}> {
+export class Card extends Component<{ fill?: boolean, style?: string | { [key: string]: any } }, {}> {
     public render() {
-        const { children, style } = this.props;
-        return <div class="umd-card" style={style}>{children}</div>;
+        const { children, fill, style } = this.props;
+
+        const classes = ['umd-card'];
+        fill && classes.push('umd-card--full-width');
+
+        return <div class={classes.join(' ')} style={style}>{children}</div>;
     }
 }
 

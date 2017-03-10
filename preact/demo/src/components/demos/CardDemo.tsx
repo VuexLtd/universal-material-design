@@ -23,6 +23,14 @@ export function CardDemo() {
             </Card>
         </div>
         <div>
+            <h3 class="umd-type--headline">Full Width</h3>
+            <Card fill>
+                <CardTitle>Title goes here</CardTitle>
+                <CardSubtitle>Subtitle here</CardSubtitle>
+                <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et nisl sit amet tellus fermentum iaculis.</CardText>
+            </Card>
+        </div>
+        <div>
             <h3 class="umd-type--headline">Header</h3>
             <Card>
                 <CardHeader avatar="http://placehold.it/128x128" title="Title" subtitle="Subhead" />
