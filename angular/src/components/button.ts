@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
-    selector: 'button[mdaButton],button[mdaRaisedButton]',
+    selector: '[mdaButton],[mdaRaisedButton]',
     template: `
         <div class="umd-button__inner" mdaRipple>
             <ng-content></ng-content>

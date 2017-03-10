@@ -20,7 +20,7 @@
             background: umd-theme-color($theme, standard, 300);
         }
 
-        &[data-umd-variant=primary] {
+        &[data-umd-variant=primary]:not(.umd-button--disabled) {
             &:not(.umd-button--flat) {
                 color: umd-theme-color($theme, primary, 500, true);
 
@@ -34,7 +34,7 @@
             }
         }
 
-        &[data-umd-variant=accent] {
+        &[data-umd-variant=accent]:not(.umd-button--disabled) {
             &:not(.umd-button--flat) {
                 color: umd-theme-color($theme, accent, A400, true);
 
