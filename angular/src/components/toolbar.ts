@@ -1,16 +1,16 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, Input, ElementRef } from '@angular/core';
+import { HostClasses, DynamicClass } from '../core/classes';
 
 export type ToolbarType = 'app';
 
+@HostClasses('umd-toolbar')
 @Directive({
     selector: 'mda-toolbar'
 })
 export class MdaToolbar {
     @Input()
-    public set type(type: ToolbarType) {
-        this.classes = `umd-toolbar umd-toolbar--${type}`;
-    }
+    @DynamicClass('umd-toolbar--$1')
+    public type: ToolbarType = 'app';
 
-    @HostBinding('class')
-    private classes: string = 'umd-toolbar umd-toolbar--app';
+    constructor(private elementRef: ElementRef) {}
 }

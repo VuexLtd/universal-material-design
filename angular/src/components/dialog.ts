@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 
 import { Portal, ComponentPortal, TemplatePortal } from '../core/portal';
+import { HostClasses } from '../core/classes';
 
 @Injectable()
 export class MdaDialog {
@@ -60,6 +61,7 @@ export class MdaDialogRef {
     }
 }
 
+@HostClasses('umd-dialog-container')
 @Component({
     selector: 'mda-dialog-container',
     template: `
@@ -68,9 +70,6 @@ export class MdaDialogRef {
     `
 })
 export class MdaDialogContainer {
-    @HostBinding('class')
-    private classes: string = 'umd-dialog-container';
-
     @ViewChild('dialog', { read: ElementRef })
     public dialogElementRef: ElementRef;
 
@@ -98,20 +97,20 @@ export class MdaDialogContainer {
     }
 }
 
+@HostClasses('umd-dialog-title umd-dialog--includes-padding')
 @Directive({
     selector: 'mda-dialog-title'
 })
 export class MdaDialogTitle {
-    @HostBinding('class')
-    private classes: string = 'umd-dialog-title umd-dialog--includes-padding';
+    constructor(private elementRef: ElementRef) {}
 }
 
+@HostClasses('umd-dialog-content umd-dialog--includes-padding')
 @Directive({
     selector: 'mda-dialog-content'
 })
 export class MdaDialogContent {
-    @HostBinding('class')
-    private classes: string = 'umd-dialog-content umd-dialog--includes-padding';
+    constructor(private elementRef: ElementRef) {}
 }
 
 @Directive({

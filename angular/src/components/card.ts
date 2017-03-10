@@ -1,52 +1,51 @@
-import { Component, Directive, HostBinding, Input } from '@angular/core';
+import { Component, Directive, HostBinding, Input, ElementRef } from '@angular/core';
+import { HostClasses } from '../core/classes';
 
+@HostClasses('umd-card')
 @Directive({
     selector: 'mda-card'
 })
 export class MdaCard {
-    @HostBinding('class')
-    private classes: string = 'umd-card';
+    constructor(private elementRef: ElementRef) {}
 }
 
+@HostClasses('umd-card-text umd-card--includes-padding')
 @Directive({
     selector: 'mda-card-text'
 })
 export class MdaCardText {
-    @HostBinding('class')
-    private classes: string = 'umd-card-text umd-card--includes-padding';
+    constructor(private elementRef: ElementRef) {}
 }
 
+@HostClasses('umd-card-media')
 @Directive({
     selector: 'mda-card-media'
 })
 export class MdaCardMedia {
-    @HostBinding('class')
-    private classes: string = 'umd-card-media';
+    constructor(private elementRef: ElementRef) {}
 }
 
+@HostClasses('umd-card-title umd-card--includes-padding')
 @Directive({
     selector: 'mda-card-title'
 })
 export class MdaCardTitle {
-    @HostBinding('class')
-    private classes: string = 'umd-card-title umd-card--includes-padding';
+    constructor(private elementRef: ElementRef) {}
 }
 
+@HostClasses('umd-card-subtitle umd-card--includes-padding')
 @Directive({
     selector: 'mda-card-subtitle'
 })
 export class MdaCardSubtitle {
-    @HostBinding('class')
-    private classes: string = 'umd-card-subtitle umd-card--includes-padding';
+    constructor(private elementRef: ElementRef) {}
 }
 
+@HostClasses('umd-card-actions')
 @Directive({
     selector: 'mda-card-actions',
 })
 export class MdaCardActions {
-    @HostBinding('class.umd-card-actions')
-    public _ = true;
-
     @Input()
     public set vertical(vertical: boolean) {
         this.isVertical = vertical !== false && vertical !== null;
@@ -54,8 +53,11 @@ export class MdaCardActions {
 
     @HostBinding('class.umd-card-actions--vertical')
     public isVertical = false;
+
+    constructor(private elementRef: ElementRef) {}
 }
 
+@HostClasses('umd-card-media-area')
 @Component({
     selector: 'mda-card-media-area',
     template: `
@@ -68,11 +70,10 @@ export class MdaCardActions {
     `
 })
 export class MdaCardMediaArea {
-    @HostBinding('class')
-    private classes: string = 'umd-card-media-area';
+    constructor(private elementRef: ElementRef) {}
 }
 
-
+@HostClasses('umd-card-header umd-card--includes-padding')
 @Component({
     selector: 'mda-card-header',
     template: `
@@ -84,9 +85,6 @@ export class MdaCardMediaArea {
     `
 })
 export class MdaCardHeader {
-    @HostBinding('class')
-    private classes: string = 'umd-card-header umd-card--includes-padding';
-
     @Input()
     public avatar: string;
 
@@ -95,4 +93,6 @@ export class MdaCardHeader {
 
     @Input()
     public subtitle: string;
+
+    constructor(private elementRef: ElementRef) {}
 }
