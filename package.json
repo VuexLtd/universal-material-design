@@ -1,6 +1,6 @@
 {
   "name": "@material-design/universal",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "A set of material design components with packages for various frameworks",
   "repository": "https://github.com/VuexLtd/universal-material-design",
   "author": "James Birtles <james.birtles@vuex.io>",
@@ -9,7 +9,7 @@
     "build": "yarn run build:angular && yarn run build:preact",
     "build:preact": "gulp preact",
     "build:angular": "gulp angular && yarn run build:angular:ngc",
-    "build:angular:ngc": "cd angular && ts-node -F -O \"{\\\"module\\\":\\\"commonjs\\\"}\" ./ngc.ts",
+    "build:angular:ngc": "cd angular && ngc",
     "demo:preact": "cd preact/demo && webpack-dev-server",
     "demo:angular": "cd angular/demo && webpack-dev-server",
     "docs": "cd docs && webpack-dev-server"
