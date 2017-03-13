@@ -15,34 +15,6 @@
         .umd-ripple {
             background: rgba(umd-theme-color($theme, text, primary), .2);
         }
-
-        // &[data-umd-variant=primary] {
-        //     .umd-tab-label--active {
-        //         color: umd-theme-color($theme, primary, 500);
-        //     }
-
-        //     .umd-tab-bar__underline {
-        //         background: umd-theme-color($theme, primary, 500);
-        //     }
-
-        //     .umd-ripple {
-        //         background: rgba(umd-theme-color($theme, primary, 500), .2);
-        //     }
-        // }
-
-        // &[data-umd-variant=accent] {
-        //     .umd-tab-label--active {
-        //         color: umd-theme-color($theme, accent, A400);
-        //     }
-
-        //     .umd-tab-bar__underline {
-        //         background: umd-theme-color($theme, accent, A400);
-        //     }
-
-        //     .umd-ripple {
-        //         background: rgba(umd-theme-color($theme, accent, A400), .2);
-        //     }
-        // }
     }
 
     @include umd-tab-variant(primary, umd-theme-color($theme, primary, 500), null);
