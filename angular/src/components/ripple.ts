@@ -3,14 +3,20 @@ import { Directive, ElementRef, AfterViewInit, OnDestroy, Input } from '@angular
 import { Coord2d } from '../core/types';
 
 @Directive({
-    selector: '[mdaRipple]',
+    selector: 'mda-ripple,[mdaRipple]',
 })
 export class MdaRipple implements AfterViewInit, OnDestroy {
     private ripples = new Set<RippleRef>();
     private activeRipple: RippleRef;
+    private isAttribute = false;
 
     @Input('mdaRippleColor')
-    public color: string = "rgba(0, 0, 0, .1)";
+    public color: string;
+
+    @Input()
+    public set mdaRipple(mdaRipple: boolean) {
+        this.isAttribute = true;
+    }
 
     constructor(private elementRef: ElementRef) {
         this.onMouseDown = this.onMouseDown.bind(this);
@@ -18,7 +24,7 @@ export class MdaRipple implements AfterViewInit, OnDestroy {
     }
 
     public ngAfterViewInit() {
-        const element: HTMLElement = this.elementRef.nativeElement;
+        const element = this.getElement();
 
         element.style.position = 'relative';
         element.style.overflow = 'hidden';
@@ -34,8 +40,7 @@ export class MdaRipple implements AfterViewInit, OnDestroy {
     }
 
     private onMouseDown(evt: MouseEvent) {
-        const element: HTMLElement = this.elementRef.nativeElement;
-        this.activeRipple = this.add(Coord2d.fromMouseEvent(evt, 'offset', element), this.color);
+        this.activeRipple = this.add(Coord2d.fromMouseEvent(evt, 'offset', this.getElement()), this.color);
         this.activeRipple.trigger(true);
 
         this.ripples.add(this.activeRipple);
@@ -49,9 +54,20 @@ export class MdaRipple implements AfterViewInit, OnDestroy {
     }
 
     public add(pos: Coord2d, colour: string): RippleRef {
+        const element = this.getElement();
+
         const ripple = new RippleRef(pos, colour);
-        ripple.attach(this.elementRef.nativeElement, this.elementRef.nativeElement);
+        ripple.attach(element, element);
         return ripple;
+    }
+
+    private getElement() {
+        let element: HTMLElement = this.elementRef.nativeElement;
+        if (this.isAttribute) {
+            return element;
+        }
+
+        return element.parentElement;
     }
 }
 
@@ -110,7 +126,9 @@ export class RippleRef {
     }
 
     public remove() {
-        this.element.parentElement.removeChild(this.element);
+        if (this.element.parentElement) {
+            this.element.parentElement.removeChild(this.element);
+        }
         this.onDestroy(this);
     }
 

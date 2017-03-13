@@ -6,7 +6,8 @@ $umd-toolbar-height--app: 64px !default;
 $umd-toolbar-side-padding: 24px !default;
 
 .umd-toolbar {
-    display: block;
+    display: flex;
+    align-items: center;
 
     &--app {
         height: $umd-toolbar-height--app;
@@ -20,6 +21,10 @@ $umd-toolbar-side-padding: 24px !default;
 
         &:not(.umd-toolbar--flat) {
             @include umd-elevation(4);
+        }
+
+        .umd-tab-bar {
+            margin-left: 56px;
         }
     }
 }

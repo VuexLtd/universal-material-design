@@ -1,4 +1,4 @@
-.button-preview {
+.preview {
     width: 160px;
     box-sizing: border-box;
     cursor: pointer;
@@ -12,5 +12,15 @@
     .umd-button {
         width: 100%;
         pointer-events: none;
+    }
+}
+
+.components {
+    display: flex;
+    flex-wrap: wrap;
+
+    > div {
+        margin-right: 16px;
+        margin-bottom: 16px;
     }
 }

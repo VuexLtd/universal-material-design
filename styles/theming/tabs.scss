@@ -1,0 +1,81 @@
+@import './utils';
+
+@mixin tabs-theme($theme) {
+    .umd-tab-bar {
+        color: umd-theme-color($theme, text, secondary);
+
+        .umd-tab-label--active {
+            color: umd-theme-color($theme, text, primary);
+        }
+
+        &__underline {
+            background: umd-theme-color($theme, standard, 300);
+        }
+
+        .umd-ripple {
+            background: rgba(umd-theme-color($theme, text, primary), .2);
+        }
+
+        // &[data-umd-variant=primary] {
+        //     .umd-tab-label--active {
+        //         color: umd-theme-color($theme, primary, 500);
+        //     }
+
+        //     .umd-tab-bar__underline {
+        //         background: umd-theme-color($theme, primary, 500);
+        //     }
+
+        //     .umd-ripple {
+        //         background: rgba(umd-theme-color($theme, primary, 500), .2);
+        //     }
+        // }
+
+        // &[data-umd-variant=accent] {
+        //     .umd-tab-label--active {
+        //         color: umd-theme-color($theme, accent, A400);
+        //     }
+
+        //     .umd-tab-bar__underline {
+        //         background: umd-theme-color($theme, accent, A400);
+        //     }
+
+        //     .umd-ripple {
+        //         background: rgba(umd-theme-color($theme, accent, A400), .2);
+        //     }
+        // }
+    }
+
+    @include umd-tab-variant(primary, umd-theme-color($theme, primary, 500), null);
+    @include umd-tab-variant(accent, umd-theme-color($theme, accent, A400), null);
+    @include umd-tab-variant(
+        on-primary,
+        umd-theme-color($theme, primary, 500, true),
+        transparentize(umd-theme-color($theme, primary, 500, true), .2)
+    );
+    @include umd-tab-variant(
+        on-accent,
+        umd-theme-color($theme, accent, A400, true),
+        transparentize(umd-theme-color($theme, accent, A400, true), .2)
+    );
+}
+
+@mixin umd-tab-variant($name, $color, $inactive-color) {
+    .umd-tab-bar[data-umd-variant=#{$name}] {
+        @if variable-exists('inactive-color') {
+            color: $inactive-color;
+        }
+
+        .umd-tab-label--active {
+            color: $color;
+        }
+
+        .umd-tab-bar__underline {
+            background: $color;
+        }
+
+        .umd-ripple {
+            background: rgba($color, .2);
+        }
+    }
+}
+

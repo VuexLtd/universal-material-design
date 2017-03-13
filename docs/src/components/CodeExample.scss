@@ -7,12 +7,29 @@
         justify-content: space-between;
     }
 
-    code pre {
+    .code-section {
         background: #1E1E1E;
+
+        .umd-tab-bar {
+            padding-left: 16px;
+
+            &::after {
+                background: rgba(255, 255, 255, .2);
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+            }
+        }
+    }
+
+    code pre {
         color: white;
-        margin: 0;
-        padding: 16px;
         font-family: 'Roboto Mono', monospace;
+        padding: 16px;
+        margin: 0;
     }
 }
 

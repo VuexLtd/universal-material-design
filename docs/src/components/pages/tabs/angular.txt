@@ -1,0 +1,27 @@
+<mda-tab-bar variant="primary">
+    <mda-tab-label>Tab 1</mda-tab-label>
+    <mda-tab-label>Tab 2</mda-tab-label>
+    <mda-tab-label>Tab 3 with quite a long tab label, like seriously stupidly large</mda-tab-label>
+</mda-tab-bar>
+
+<mda-tab-bar variant="accent">
+    <mda-tab-label>Tab 1</mda-tab-label>
+    <mda-tab-label>Tab 2</mda-tab-label>
+    <mda-tab-label>Tab 3</mda-tab-label>
+</mda-tab-bar>
+
+<mda-toolbar flat variant="primary">
+    <mda-tab-bar variant="on-primary">
+        <mda-tab-label>Tab 1</mda-tab-label>
+        <mda-tab-label>Tab 2</mda-tab-label>
+        <mda-tab-label>Tab 3</mda-tab-label>
+    </mda-tab-bar>
+</mda-toolbar>
+
+<mda-toolbar flat variant="accent">
+    <mda-tab-bar variant="on-accent">
+        <mda-tab-label>Tab 1</mda-tab-label>
+        <mda-tab-label>Tab 2</mda-tab-label>
+        <mda-tab-label>Tab 3</mda-tab-label>
+    </mda-tab-bar>
+</mda-toolbar>

@@ -5,6 +5,8 @@
 @import './theming/dialog';
 @import './theming/icon';
 @import './theming/menu';
+@import './theming/ripple';
+@import './theming/tabs';
 @import './theming/textfield';
 @import './theming/toolbar';
 
@@ -15,6 +17,8 @@
     @include dialog-theme($theme);
     @include icon-theme($theme);
     @include menu-theme($theme);
+    @include ripple-theme($theme);
+    @include tabs-theme($theme);
     @include textfield-theme($theme);
     @include toolbar-theme($theme);
 }

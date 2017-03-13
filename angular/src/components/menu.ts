@@ -113,8 +113,12 @@ export class MdaMenuTrigger {
     }
 }
 
-@Directive({
-    selector: 'mda-menu-item,[mdaMenuItem]'
+@Component({
+    selector: 'mda-menu-item',
+    template: `
+        <ng-content></ng-content>
+        <mda-ripple></mda-ripple>
+    `,
 })
 export class MdaMenuItem {
     @HostBinding('class.umd-menu-item')

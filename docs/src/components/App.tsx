@@ -4,6 +4,7 @@ import { Router, Route } from 'preact-enroute';
 
 import { Index } from './Index';
 import { ButtonDocs } from './pages/buttons/ButtonDocs';
+import { TabDocs } from './pages/tabs/TabDocs';
 
 export class App extends Component<{}, {}> {
 	public state = {
@@ -31,6 +32,7 @@ export class App extends Component<{}, {}> {
             <Router {...this.state}>
                 <Route path="/" component={Index} />
                 <Route path="/components/buttons" component={ButtonDocs} />
+                <Route path="/components/tabs" component={TabDocs} />
             </Router>
         </div>
     }

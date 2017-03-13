@@ -16,35 +16,49 @@
             color: umd-theme-color($theme, text, disabled);
         }
 
-        &:not(.umd-button--flat).umd-button--disabled .umd-button__inner {
-            background: umd-theme-color($theme, standard, 300);
-        }
-
-        &[data-umd-variant=primary]:not(.umd-button--disabled) {
-            &:not(.umd-button--flat) {
-                color: umd-theme-color($theme, primary, 500, true);
-
-                .umd-button__inner {
-                    background: umd-theme-color($theme, primary, 500);
-                }
-            }
-
-            &.umd-button--flat {
-                color: umd-theme-color($theme, primary, 500);
+        &:not(.umd-button--flat) {
+            &.umd-button--disabled .umd-button__inner {
+                background: umd-theme-color($theme, standard, 300);
             }
         }
 
-        &[data-umd-variant=accent]:not(.umd-button--disabled) {
-            &:not(.umd-button--flat) {
-                color: umd-theme-color($theme, accent, A400, true);
+        .umd-ripple {
+            background: rgba(umd-theme-color($theme, text, primary), 0.2);
+        }
+    }
 
-                .umd-button__inner {
-                    background: umd-theme-color($theme, accent, A400);
-                }
+    @include umd-button-variant(
+        'primary',
+        umd-theme-color($theme, primary, 500, true),
+        umd-theme-color($theme, primary, 500)
+    );
+
+    @include umd-button-variant(
+        'accent',
+        umd-theme-color($theme, accent, A400, true),
+        umd-theme-color($theme, accent, A400)
+    );
+}
+
+@mixin umd-button-variant($name, $text, $background) {
+    .umd-button[data-umd-variant=#{$name}]:not(.umd-button--disabled) {
+        &:not(.umd-button--flat) {
+            color: $text;
+
+            .umd-button__inner {
+                background: $background;
             }
 
-            &.umd-button--flat {
-                color: umd-theme-color($theme, accent, A400);
+            .umd-ripple {
+                background: rgba($text, 0.2);
+            }
+        }
+
+        &.umd-button--flat {
+            color: $background;
+
+            .umd-ripple {
+                background: rgba($background, 0.2);
             }
         }
     }

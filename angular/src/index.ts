@@ -26,6 +26,7 @@ import {
 import { MdaIcon } from './components/icon';
 import { MdaMenu, MdaMenuTrigger, MdaMenuItem } from './components/menu';
 import { MdaRipple } from './components/ripple';
+import { MdaTabBar, MdaTabLabel } from './components/tab';
 import { MdaTextField } from './components/textfield';
 import { MdaToolbar } from './components/toolbar';
 
@@ -55,6 +56,8 @@ import { MdaToolbar } from './components/toolbar';
         MdaMenuTrigger,
         MdaMenuItem,
         MdaRipple,
+        MdaTabBar,
+        MdaTabLabel,
         MdaTextField,
         MdaToolbar,
     ],
@@ -78,6 +81,8 @@ import { MdaToolbar } from './components/toolbar';
         MdaMenuTrigger,
         MdaMenuItem,
         MdaRipple,
+        MdaTabBar,
+        MdaTabLabel,
         MdaTextField,
         MdaToolbar,
     ],
@@ -117,6 +122,8 @@ export {
     MdaMenuTrigger,
     MdaMenuItem,
     MdaRipple,
+    MdaTabBar,
+    MdaTabLabel,
     MdaTextField,
     MdaToolbar,
 }

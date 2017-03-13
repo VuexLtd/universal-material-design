@@ -9,7 +9,6 @@ export interface RippleProps {
 
 export class Ripple extends Component<RippleProps, {}> {
     static defaultProps: RippleProps = {
-        colour: 'rgba(0, 0, 0, .1)',
     };
 
     private ripples = new Set<RippleRef>();
@@ -82,7 +81,7 @@ export class RippleRef {
 
     constructor(
         public position: Coord2d,
-        public colour: string,
+        public colour?: string,
     ) {
         this.element.classList.add('umd-ripple');
         this.setStyles({
@@ -127,7 +126,9 @@ export class RippleRef {
     }
 
     public remove() {
-        this.element.parentElement.removeChild(this.element);
+        if (this.element.parentElement) {
+            this.element.parentElement.removeChild(this.element);
+        }
         this.onDestroy(this);
     }
 

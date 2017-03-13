@@ -12,6 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }  from './app.component';
 import { ButtonDemoComponent } from './demos/button/button-demo.component';
 import { MenuDemoComponent } from './demos/menu/menu-demo.component';
+import { TabDemoComponent } from './demos/tab/tab-demo.component';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { MenuDemoComponent } from './demos/menu/menu-demo.component';
         IconDemoComponent,
         MenuDemoComponent,
         RippleDemoComponent,
+        TabDemoComponent,
         TextFieldDemoComponent,
         ToolbarDemoComponent,
         TypographyDemoComponent,

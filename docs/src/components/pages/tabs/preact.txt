@@ -1,0 +1,27 @@
+<TabBar variant="primary">
+    <TabLabel>Tab 1</TabLabel>
+    <TabLabel>Tab 2</TabLabel>
+    <TabLabel>Tab 3 with quite a long tab label, like seriously stupidly large</TabLabel>
+</TabBar>
+
+<TabBar variant="accent">
+    <TabLabel>Tab 1</TabLabel>
+    <TabLabel>Tab 2</TabLabel>
+    <TabLabel>Tab 3</TabLabel>
+</TabBar>
+
+<Toolbar flat variant="primary">
+    <TabBar variant="on-primary">
+        <TabLabel>Tab 1</TabLabel>
+        <TabLabel>Tab 2</TabLabel>
+        <TabLabel>Tab 3</TabLabel>
+    </TabBar>
+</Toolbar>
+
+<Toolbar flat variant="accent">
+    <TabBar variant="on-accent">
+        <TabLabel>Tab 1</TabLabel>
+        <TabLabel>Tab 2</TabLabel>
+        <TabLabel>Tab 3</TabLabel>
+    </TabBar>
+</Toolbar>

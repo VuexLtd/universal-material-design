@@ -16,5 +16,13 @@ export class MdaToolbar {
     @HostBinding('attr.data-umd-variant')
     public variant: string = 'default';
 
+    @Input()
+    public set flat(flat: boolean) {
+        this.isFlat = flat !== false && flat !== null;
+    }
+
+    @HostBinding('class.umd-toolbar--flat')
+    public isFlat = false;
+
     constructor(private elementRef: ElementRef) {}
 }
