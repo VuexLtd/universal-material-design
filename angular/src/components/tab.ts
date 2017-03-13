@@ -28,6 +28,9 @@ export class MdaTabBar implements AfterContentInit {
     @HostBinding('attr.data-umd-variant')
     public variant: string = 'default';
 
+    @Input()
+    public selected: number = 0;
+
     @Output()
     public selectedChange = new EventEmitter<number>();
 
@@ -40,8 +43,8 @@ export class MdaTabBar implements AfterContentInit {
     }
 
     ngAfterContentInit() {
-        if (this.tabLabels.length > 0) {
-            requestAnimationFrame(() => this.selectTab(this.tabLabels.first));
+        if (this.tabLabels.length > this.selected) {
+            requestAnimationFrame(() => this.selectTab(this.tabLabels.find((_, index) => index === this.selected)));
         }
     }
 
