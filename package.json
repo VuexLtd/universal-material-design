@@ -9,9 +9,10 @@
     "build": "yarn run build:angular && yarn run build:preact",
     "build:preact": "gulp preact",
     "build:angular": "gulp angular && yarn run build:angular:ngc",
-    "build:angular:ngc": "cd angular && ngc",
+    "build:angular:ngc": "cd angular && ts-node -F -O \"{\\\"module\\\":\\\"commonjs\\\"}\" ./ngc.ts",
     "demo:preact": "cd preact/demo && webpack-dev-server",
-    "demo:angular": "cd angular/demo && webpack-dev-server"
+    "demo:angular": "cd angular/demo && webpack-dev-server",
+    "docs": "cd docs && webpack-dev-server"
   },
   "devDependencies": {
     "@angular/compiler": "^2.4.9",
@@ -36,5 +37,9 @@
     "typescript": "^2.2.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
+  },
+  "dependencies": {
+    "@types/highlight.js": "^9.1.9",
+    "highlight.js": "^9.10.0"
   }
 }

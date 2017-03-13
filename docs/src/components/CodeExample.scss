@@ -1,0 +1,41 @@
+@import '../../../styles/core/motion';
+
+.code-example {
+    .umd-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    code pre {
+        background: #1E1E1E;
+        color: white;
+        margin: 0;
+        padding: 16px;
+        font-family: 'Roboto Mono', monospace;
+    }
+}
+
+.hljs-keyword, .hljs-name {
+    color: #3F9CD6;
+}
+
+.hljs-tag {
+    color: #798080;
+}
+
+.hljs-attr {
+    color: #9CDCFE;
+}
+
+.hljs-string {
+    color: #C88975;
+}
+
+.hljs-number {
+    color: #B5CEA8;
+}
+
+.hljs-title {
+    color: #DCDCAA;
+}

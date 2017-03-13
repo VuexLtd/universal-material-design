@@ -1,0 +1,28 @@
+<div>
+    <h1 class="umd-type--title">Regular</h1>
+    <button mdaButton mdaVariant="default">Default</button>
+    <button mdaButton mdaVariant="primary">Primary</button>
+    <button mdaButton mdaVariant="accent">Accent</button>
+    <button mdaButton disabled>Disabled</button>
+</div>
+<div>
+    <h1 class="umd-type--title">Dense</h1>
+    <button mdaButton mdaVariant="default" dense>Default</button>
+    <button mdaButton mdaVariant="primary" dense>Primary</button>
+    <button mdaButton mdaVariant="accent" dense>Accent</button>
+    <button mdaButton disabled dense>Disabled</button>
+</div>
+<div>
+    <h1 class="umd-type--title">Flat</h1>
+    <button mdaButton mdaVariant="default" flat>Default</button>
+    <button mdaButton mdaVariant="primary" flat>Primary</button>
+    <button mdaButton mdaVariant="accent" flat>Accent</button>
+    <button mdaButton disabled flat>Disabled</button>
+</div>
+<div>
+    <h1 class="umd-type--title">Icon</h1>
+    <button mdaButton mdaVariant="default" icon><mda-icon>add</mda-icon></button>
+    <button mdaButton mdaVariant="primary" icon><mda-icon>send</mda-icon></button>
+    <button mdaButton mdaVariant="accent" icon><mda-icon>edit</mda-icon></button>
+    <button mdaButton disabled icon><mda-icon>more_vert</mda-icon></button>
+</div>

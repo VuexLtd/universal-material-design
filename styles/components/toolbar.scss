@@ -9,8 +9,6 @@ $umd-toolbar-side-padding: 24px !default;
     display: block;
 
     &--app {
-        @include umd-elevation(4);
-
         height: $umd-toolbar-height--app;
         line-height: $umd-toolbar-height--app;
 
@@ -19,5 +17,9 @@ $umd-toolbar-side-padding: 24px !default;
         font-family: $umd-font-family;
         font-size: 20px;
         font-weight: 500;
+
+        &:not(.umd-toolbar--flat) {
+            @include umd-elevation(4);
+        }
     }
 }
