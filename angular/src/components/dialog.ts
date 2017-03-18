@@ -83,7 +83,6 @@ export class MdaDialogContainer {
     @HostListener('click', ['$event.target'])
     public onClick(target: HTMLElement) {
         if (target === this.elementRef.nativeElement) {
-            console.log('should close dialog');
             this.dialogRef.close();
         }
     }
