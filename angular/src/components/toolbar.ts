@@ -25,4 +25,6 @@ export class MdaToolbar {
     public isFlat = false;
 
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }

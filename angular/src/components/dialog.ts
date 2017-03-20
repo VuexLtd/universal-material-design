@@ -12,6 +12,7 @@ import {
     ComponentFactoryResolver,
     TemplateRef,
     ViewContainerRef,
+    EventEmitter,
 } from '@angular/core';
 
 import { Portal, ComponentPortal, TemplatePortal } from '../core/portal';
@@ -53,11 +54,14 @@ export class MdaDialog {
 }
 
 export class MdaDialogRef {
+    public closed = new EventEmitter<any>();
+
     constructor(private destroyFn: () => void) {
     }
 
-    public close() {
+    public close(value?: any) {
         this.destroyFn();
+        this.closed.emit(value);
     }
 }
 
@@ -95,6 +99,8 @@ export class MdaDialogContainer {
 
         portal.attach(this.dialogElementRef.nativeElement);
     }
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-dialog-title umd-dialog--includes-padding')
@@ -103,6 +109,8 @@ export class MdaDialogContainer {
 })
 export class MdaDialogTitle {
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-dialog-content umd-dialog--includes-padding')
@@ -111,6 +119,8 @@ export class MdaDialogTitle {
 })
 export class MdaDialogContent {
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @Directive({

@@ -15,6 +15,8 @@ export class MdaCard {
     }
 
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-card-text umd-card--includes-padding')
@@ -23,6 +25,8 @@ export class MdaCard {
 })
 export class MdaCardText {
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-card-media')
@@ -31,6 +35,8 @@ export class MdaCardText {
 })
 export class MdaCardMedia {
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-card-title umd-card--includes-padding')
@@ -39,6 +45,8 @@ export class MdaCardMedia {
 })
 export class MdaCardTitle {
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-card-subtitle umd-card--includes-padding')
@@ -47,6 +55,8 @@ export class MdaCardTitle {
 })
 export class MdaCardSubtitle {
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-card-actions')
@@ -63,6 +73,8 @@ export class MdaCardActions {
     public isVertical = false;
 
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-card-media-area')
@@ -79,6 +91,8 @@ export class MdaCardActions {
 })
 export class MdaCardMediaArea {
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
 
 @HostClasses('umd-card-header umd-card--includes-padding')
@@ -103,4 +117,6 @@ export class MdaCardHeader {
     public subtitle: string;
 
     constructor(private elementRef: ElementRef) {}
+
+    public ngAfterViewInit() {}
 }
