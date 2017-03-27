@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { Content, Button, Card, Ripple } from '@material-design/preact';
+import { Content, Button, Card, Ripple, TabBar, TabLabel } from '@material-design/preact';
 
 import { RouterLink } from './RouterLink';
 
@@ -19,9 +19,9 @@ export function Index() {
             </RouterLink>
             <RouterLink href="/components/tabs">
                 <div class="preview">
-                    <Button variant="primary"></Button>
-                    <Button variant="accent"></Button>
-                    <Button>Tabs</Button>
+                    <TabBar variant="primary"><TabLabel></TabLabel></TabBar>
+                    <TabBar variant="accent"><TabLabel></TabLabel></TabBar>
+                    <TabBar><TabLabel>TABS</TabLabel></TabBar>
                     <Ripple />
                 </div>
             </RouterLink>
