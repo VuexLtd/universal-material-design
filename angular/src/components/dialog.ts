@@ -13,23 +13,29 @@ import {
     TemplateRef,
     ViewContainerRef,
     EventEmitter,
+    OpaqueToken,
 } from '@angular/core';
 
 import { Portal, ComponentPortal, TemplatePortal } from '../core/portal';
 import { HostClasses } from '../core/classes';
+
+export const MdaDialogArgs = new OpaqueToken('mdaDialogArgs');
 
 @Injectable()
 export class MdaDialog {
     constructor(private injector: Injector) {
     }
 
-    public open<T>(component: Type<T> | TemplateRef<T>): MdaDialogRef {
+    public open<T>(component: Type<T> | TemplateRef<T>, args?: any): MdaDialogRef {
         const dialog = new ComponentPortal(MdaDialogContainer, this.injector);
 
         let content: Portal;
 
         if (component instanceof TemplateRef) {
-            component.createEmbeddedView
+            if (args) {
+                throw new Error('Cannot provide arguments to a template ref dialog');
+            }
+
             content = new TemplatePortal(component, null);
         } else {
             content = new ComponentPortal(component, this.injector);
@@ -40,10 +46,11 @@ export class MdaDialog {
             dialog.detach();
         });
         const dialogRefProvider = { provide: MdaDialogRef, useValue: dialogRef };
+        const dialogArgsProvider = { provide: MdaDialogArgs, useValue: args };
 
         dialog.inject(dialogRefProvider);
         if (content instanceof ComponentPortal) {
-            content.inject(dialogRefProvider);
+            content.inject(dialogRefProvider, dialogArgsProvider);
         }
 
         dialog.attach(document.body);

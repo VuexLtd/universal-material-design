@@ -1,6 +1,6 @@
 {
   "name": "@material-design/universal",
-  "version": "0.8.3",
+  "version": "0.8.5",
   "description": "A set of material design components with packages for various frameworks",
   "repository": "https://github.com/VuexLtd/universal-material-design",
   "author": "James Birtles <james.birtles@vuex.io>",

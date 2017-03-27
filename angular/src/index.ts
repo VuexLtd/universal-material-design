@@ -18,6 +18,7 @@ import { MdaContent } from './components/content';
 import {
     MdaDialog,
     MdaDialogActions,
+    MdaDialogArgs,
     MdaDialogContainer,
     MdaDialogContent,
     MdaDialogTitle,
@@ -114,6 +115,7 @@ export {
     MdaDialog,
     MdaDialogRef,
     MdaDialogActions,
+    MdaDialogArgs,
     MdaDialogContainer,
     MdaDialogContent,
     MdaDialogTitle,
