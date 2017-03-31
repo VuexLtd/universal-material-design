@@ -1,5 +1,6 @@
 import { h, Component, ComponentProps } from 'preact';
 import Portal from 'preact-portal';
+
 import { Ripple } from './Ripple';
 
 export interface MenuProps {
@@ -74,7 +75,7 @@ export class Menu extends Component<MenuProps, { visible?: boolean; }> {
     }
 }
 
-export function MenuItem({ children }: ComponentProps) {
+export function MenuItem({ children }: ComponentProps<any>) {
     return <div class="umd-menu-item">
         {children}
         <Ripple />
