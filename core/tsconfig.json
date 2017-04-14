@@ -5,21 +5,15 @@
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": true,
-        "outDir": "dist",
+        "outDir": "../dist/core",
         "declaration": true,
-        "jsx": "react",
-        "jsxFactory": "h",
         "lib": [
             "dom",
-            "es2015"
-        ],
-        "baseUrl": ".",
-        "paths": {
-            "@material-design/core": ["../dist/core"]
-        }
+            "es2015",
+            "es2016.array.include"
+        ]
     },
     "exclude": [
-        "node_modules",
-        "demo"
+        "node_modules"
     ]
 }

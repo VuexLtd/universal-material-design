@@ -12,7 +12,11 @@
         "lib": [
             "dom",
             "es2015"
-        ]
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@material-design/core": ["../dist/core"]
+        }
     },
     "exclude": [
         "node_modules",

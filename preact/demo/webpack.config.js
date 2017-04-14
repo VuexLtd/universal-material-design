@@ -28,6 +28,7 @@ module.exports = {
         ],
         alias: {
             '@material-design/preact': resolve(__dirname, '../src'),
+            '@material-design/core': resolve(__dirname, '../../core/src'),
         }
     },
     module: {

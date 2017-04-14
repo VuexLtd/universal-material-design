@@ -28,6 +28,7 @@ module.exports = {
         ],
         alias: {
             '@material-design/angular': resolve(__dirname, '../src'),
+            '@material-design/core': resolve(__dirname, '../../core/src'),
         }
     },
     module: {

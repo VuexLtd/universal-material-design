@@ -1,18 +1,20 @@
 {
   "name": "@material-design/universal",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "A set of material design components with packages for various frameworks",
   "repository": "https://github.com/VuexLtd/universal-material-design",
   "author": "James Birtles <james.birtles@vuex.io>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run build:angular && yarn run build:preact",
+    "build": "gulp && yarn run build:angular:ngc",
+    "build:core": "gulp core",
     "build:preact": "gulp preact",
     "build:angular": "gulp angular && yarn run build:angular:ngc",
     "build:angular:ngc": "cd angular && ngc",
     "demo:preact": "cd preact/demo && webpack-dev-server",
     "demo:angular": "cd angular/demo && webpack-dev-server",
-    "docs": "cd docs && webpack-dev-server"
+    "docs": "cd docs && webpack-dev-server",
+    "gulp": "gulp"
   },
   "devDependencies": {
     "@angular/compiler": "^2.4.9",

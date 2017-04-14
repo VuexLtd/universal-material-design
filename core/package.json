@@ -1,0 +1,9 @@
+{
+  "name": "@material-design/core",
+  "version": "0.0.0",
+  "description": "Core styles and scripts for use by the @material-design implementations",
+  "main": "index.js",
+  "repository": "https://github.com/VuexLtd/universal-material-design",
+  "author": "James Birtles <james.birtles@vuex.io>",
+  "license": "MIT"
+}

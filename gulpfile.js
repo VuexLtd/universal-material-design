@@ -7,10 +7,10 @@ const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
 const del = require('del');
 
-// TODO: populate
 let version = require('./package.json').version;
 const dests = {
     main: './dist',
+    core: './dist/core',
     preact: './dist/preact',
     angular: './dist/angular',
 };
@@ -18,7 +18,7 @@ const dests = {
 gulp.task('default', done => {
     runSequence(
         'clean',
-        'styles',
+        'core',
         [
             'preact',
             'angular',
@@ -33,28 +33,72 @@ gulp.task('clean', () => {
     ]);
 });
 
-gulp.task('styles', () => {
-    return gulp.src('./styles/styles.scss')
+
+/**
+ * Core
+ */
+
+gulp.task('core', done => {
+    runSequence(
+        ':core:clean',
+        [
+            ':core:ts',
+            ':core:styles',
+            ':core:copy',
+            ':core:package.json',
+        ],
+        done
+    );
+});
+
+const coreProject = ts.createProject('./core/tsconfig.json');
+gulp.task(':core:ts', () => {
+    return coreProject.src()
+        .pipe(coreProject())
+        .pipe(gulp.dest(dests.core));
+});
+
+gulp.task(':core:clean', () => {
+    return del(['./dist/core']);
+});
+
+gulp.task(':core:styles', () => {
+    return gulp.src('./core/styles/styles.scss')
         .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
-        .pipe(rename('umd.css'))
-        .pipe(gulp.dest(dests.main))
+        .pipe(gulp.dest(dests.core))
         .pipe(cleanCSS())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(dests.main));
+        .pipe(gulp.dest(dests.core));
+});
+
+gulp.task(':core:copy', () => {
+    return gulp.src(['./core/styles/**/*.scss', './core/README.md'])
+        .pipe(gulp.dest(dests.core));
+});
+
+gulp.task(':core:package.json', () => {
+    return gulp.src(['./core/package.json'])
+        .pipe(jsonTransform(data => {
+            return Object.assign({}, data, {
+                version: version,
+                devDependencies: undefined,
+                scripts: undefined,
+            });
+        }, 2))
+        .pipe(gulp.dest(dests.core));
 });
 
 
 /**
  * Preact
  */
+
 gulp.task('preact', done => {
     runSequence(
-        'styles',
         ':preact:clean',
         [
             ':preact:ts',
             ':preact:copy',
-            ':preact:styles',
             ':preact:package.json',
         ],
         done
@@ -73,15 +117,7 @@ gulp.task(':preact:clean', () => {
 });
 
 gulp.task(':preact:copy', () => {
-    return gulp.src(['./styles/**/*.scss', './preact/README.md'])
-        .pipe(gulp.dest(dests.preact));
-});
-
-gulp.task(':preact:styles', () => {
-    return gulp.src(['./dist/umd.css', './dist/umd.min.css'])
-        .pipe(rename(p => {
-            p.basename = p.basename.includes('min') ? 'styles.min' : 'styles'
-        }))
+    return gulp.src(['./preact/README.md'])
         .pipe(gulp.dest(dests.preact));
 });
 
@@ -92,6 +128,9 @@ gulp.task(':preact:package.json', () => {
                 version: version,
                 devDependencies: undefined,
                 scripts: undefined,
+                dependencies: Object.assign({}, data.dependencies, {
+                    "@material-design/core": version,
+                }),
             });
         }, 2))
         .pipe(gulp.dest(dests.preact));
@@ -104,11 +143,9 @@ gulp.task(':preact:package.json', () => {
 
 gulp.task('angular', done => {
     runSequence(
-        'styles',
         ':angular:clean',
         [
             ':angular:copy',
-            ':angular:styles',
             ':angular:package.json',
         ],
         done
@@ -120,15 +157,7 @@ gulp.task(':angular:clean', () => {
 });
 
 gulp.task(':angular:copy', () => {
-    return gulp.src(['./styles/**/*.scss', './angular/README.md'])
-        .pipe(gulp.dest(dests.angular));
-});
-
-gulp.task(':angular:styles', () => {
-    return gulp.src(['./dist/umd.css', './dist/umd.min.css'])
-        .pipe(rename(p => {
-            p.basename = p.basename.includes('min') ? 'styles.min' : 'styles'
-        }))
+    return gulp.src(['./angular/README.md'])
         .pipe(gulp.dest(dests.angular));
 });
 
@@ -139,6 +168,9 @@ gulp.task(':angular:package.json', () => {
                 version: version,
                 devDependencies: undefined,
                 scripts: undefined,
+                dependencies: Object.assign({}, data.dependencies, {
+                    "@material-design/core": version,
+                }),
             });
         }, 2))
         .pipe(gulp.dest(dests.angular));
