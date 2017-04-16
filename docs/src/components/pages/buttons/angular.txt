@@ -1,28 +1,43 @@
 <div>
     <h1 class="umd-type--title">Regular</h1>
+    <button mdaRaisedButton mdaVariant="default">Default</button>
+    <button mdaRaisedButton mdaVariant="primary">Primary</button>
+    <button mdaRaisedButton mdaVariant="accent">Accent</button>
+    <button mdaRaisedButton disabled>Disabled</button>
+</div>
+<div>
+    <h1 class="umd-type--title">Dense</h1>
+    <button mdaRaisedButton mdaVariant="default" dense>Default</button>
+    <button mdaRaisedButton mdaVariant="primary" dense>Primary</button>
+    <button mdaRaisedButton mdaVariant="accent" dense>Accent</button>
+    <button mdaRaisedButton disabled dense>Disabled</button>
+</div>
+<div>
+    <h1 class="umd-type--title">Flat</h1>
     <button mdaButton mdaVariant="default">Default</button>
     <button mdaButton mdaVariant="primary">Primary</button>
     <button mdaButton mdaVariant="accent">Accent</button>
     <button mdaButton disabled>Disabled</button>
 </div>
 <div>
-    <h1 class="umd-type--title">Dense</h1>
-    <button mdaButton mdaVariant="default" dense>Default</button>
-    <button mdaButton mdaVariant="primary" dense>Primary</button>
-    <button mdaButton mdaVariant="accent" dense>Accent</button>
-    <button mdaButton disabled dense>Disabled</button>
-</div>
-<div>
-    <h1 class="umd-type--title">Flat</h1>
-    <button mdaButton mdaVariant="default" flat>Default</button>
-    <button mdaButton mdaVariant="primary" flat>Primary</button>
-    <button mdaButton mdaVariant="accent" flat>Accent</button>
-    <button mdaButton disabled flat>Disabled</button>
-</div>
-<div>
     <h1 class="umd-type--title">Icon</h1>
-    <button mdaButton mdaVariant="default" icon><mda-icon>add</mda-icon></button>
-    <button mdaButton mdaVariant="primary" icon><mda-icon>send</mda-icon></button>
-    <button mdaButton mdaVariant="accent" icon><mda-icon>edit</mda-icon></button>
-    <button mdaButton disabled icon><mda-icon>more_vert</mda-icon></button>
+    <button mdaRaisedButton mdaVariant="default" icon><mda-icon>add</mda-icon></button>
+    <button mdaRaisedButton mdaVariant="primary" icon><mda-icon>send</mda-icon></button>
+    <button mdaRaisedButton mdaVariant="accent" icon><mda-icon>edit</mda-icon></button>
+    <button mdaRaisedButton disabled icon><mda-icon>more_vert</mda-icon></button>
+</div>
+<div>
+    <h1 class="umd-type--title">FAB</h1>
+    <div>
+        <button mdaRaisedButton mdaVariant="default" fab><mda-icon>add</mda-icon></button>
+        <button mdaRaisedButton mdaVariant="primary" fab><mda-icon>send</mda-icon></button>
+        <button mdaRaisedButton mdaVariant="accent" fab><mda-icon>edit</mda-icon></button>
+        <button mdaRaisedButton disabled fab><mda-icon>more_vert</mda-icon></button>
+    </div>
+    <div>
+        <button mdaRaisedButton mdaVariant="default" miniFab><mda-icon>add</mda-icon></button>
+        <button mdaRaisedButton mdaVariant="primary" miniFab><mda-icon>send</mda-icon></button>
+        <button mdaRaisedButton mdaVariant="accent" miniFab><mda-icon>edit</mda-icon></button>
+        <button mdaRaisedButton disabled miniFab><mda-icon>more_vert</mda-icon></button>
+    </div>
 </div>

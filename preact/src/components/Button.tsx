@@ -8,6 +8,8 @@ export interface ButtonProps {
     flat?: boolean;
     disabled?: boolean;
     icon?: boolean;
+    fab?: boolean;
+    miniFab?: boolean;
     variant?: string;
 
     onClick?: JSX.MouseEventHandler;
@@ -20,6 +22,8 @@ export class Button extends Component<ButtonProps, {}> {
         flat: false,
         disabled: false,
         icon: false,
+        fab: false,
+        miniFab: false,
         variant: 'default',
     };
 
@@ -31,6 +35,8 @@ export class Button extends Component<ButtonProps, {}> {
             flat,
             disabled,
             icon,
+            fab,
+            miniFab,
             variant,
 
             onClick,
@@ -52,6 +58,14 @@ export class Button extends Component<ButtonProps, {}> {
 
         if (icon) {
             btnClasses.push('umd-button--icon');
+        }
+
+        if (fab) {
+            btnClasses.push('umd-button--fab');
+        }
+
+        if (miniFab) {
+            btnClasses.push('umd-button--mini-fab');
         }
 
         return (

@@ -37,6 +37,21 @@ export function ButtonDocs() {
                 <Button variant="accent" icon><Icon icon="edit" /></Button>
                 <Button disabled icon><Icon icon="more_vert" /></Button>
             </CardText>
+            <CardText>
+                <h1 class="umd-type--title">FAB</h1>
+                <div>
+                    <Button variant="default" fab><Icon icon="add" /></Button>
+                    <Button variant="primary" fab><Icon icon="send" /></Button>
+                    <Button variant="accent" fab><Icon icon="edit" /></Button>
+                    <Button disabled fab><Icon icon="more_vert" /></Button>
+                </div>
+                <div>
+                    <Button variant="default" miniFab><Icon icon="add" /></Button>
+                    <Button variant="primary" miniFab><Icon icon="send" /></Button>
+                    <Button variant="accent" miniFab><Icon icon="edit" /></Button>
+                    <Button disabled miniFab><Icon icon="more_vert" /></Button>
+                </div>
+            </CardText>
         </Card>
     </Content>
 }

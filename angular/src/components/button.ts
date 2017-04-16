@@ -28,6 +28,16 @@ export class MdaButton {
     }
 
     @Input()
+    public set fab(fab: boolean) {
+        this.isFab = fab !== false && fab !== null;
+    }
+
+    @Input()
+    public set miniFab(fab: boolean) {
+        this.isMiniFab = fab !== false && fab !== null;
+    }
+
+    @Input()
     public set disabled(disabled: boolean) {
         this.isDisabled = disabled !== false && disabled !== null;
     }
@@ -43,6 +53,12 @@ export class MdaButton {
 
     @HostBinding('class.umd-button--icon')
     public isIcon = false;
+
+    @HostBinding('class.umd-button--fab')
+    public isFab = false;
+
+    @HostBinding('class.umd-button--mini-fab')
+    public isMiniFab = false;
 
     @Input()
     @HostBinding('attr.data-umd-variant')

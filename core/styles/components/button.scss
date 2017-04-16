@@ -10,6 +10,9 @@ $umd-button-height--dense: 32px !default;
 
 $umd-button-min-width--flat: 64px !default;
 
+$umd-fab-size: 56px !default;
+$umd-fab-size--mini: 40px !default;
+
 .umd-button {
     display: inline-block;
     background: none;
@@ -56,8 +59,11 @@ $umd-button-min-width--flat: 64px !default;
         }
     }
 
-    &--icon {
+    &--icon, &--fab, &--mini-fab {
         .umd-button__inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 50%;
             padding: 0;
             width: $umd-button-height;
@@ -99,9 +105,23 @@ $umd-button-min-width--flat: 64px !default;
 
     .umd-icon {
         color: inherit;
-        position: relative;
-        top: 4px;
         padding: 0 !important;
         font-size: 18px !important;
+    }
+
+    &--fab .umd-button__inner {
+        width: $umd-fab-size;
+        height: $umd-fab-size;
+    }
+
+    &--mini-fab .umd-button__inner {
+        width: $umd-fab-size--mini;
+        height: $umd-fab-size--mini;
+    }
+
+    &--fab, &--mini-fab {
+        .umd-icon {
+            font-size: 24px !important;
+        }
     }
 }
