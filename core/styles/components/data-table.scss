@@ -1,0 +1,60 @@
+@import '../core/variables';
+
+.umd-data-table {
+    display: table;
+    font-family: $umd-font-family;
+    font-size: 13px;
+    border-spacing: 0;
+    padding-bottom: 8px;
+
+    th {
+        font-weight: 500;
+        font-size: 12px;
+        white-space: nowrap;
+        position: relative;
+
+        &.umd-data-table--sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .umd-icon {
+            color: inherit;
+            position: absolute;
+            left: 36px;
+            top: 19px;
+            padding: 0 !important;
+            font-size: 16px;
+        }
+    }
+
+    td, th {
+        padding: 0;
+        padding-left: 56px;
+        text-align: left;
+
+        &.umd-data-table--numeric {
+            text-align: right;
+        }
+    }
+
+    td:first-of-type, th:first-of-type {
+        padding-left: 24px;
+    }
+
+    td:last-of-type, th:last-of-type {
+        padding-right: 24px;
+    }
+
+    thead tr {
+        height: 56px;
+    }
+
+    tbody tr {
+        height: 48px;
+    }
+
+    &--fill {
+        width: 100%;
+    }
+}

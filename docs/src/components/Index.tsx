@@ -25,6 +25,14 @@ export function Index() {
                     <Ripple />
                 </div>
             </RouterLink>
+            <RouterLink href="/components/data-tables">
+                <div class="preview">
+                    <Button variant="primary"></Button>
+                    <Button variant="accent"></Button>
+                    <Button>Data Tables</Button>
+                    <Ripple />
+                </div>
+            </RouterLink>
         </div>
     </Content>
 }

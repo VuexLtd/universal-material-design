@@ -2,6 +2,7 @@
 @import './theming/button';
 @import './theming/card';
 @import './theming/chip';
+@import './theming/data-table';
 @import './theming/dialog';
 @import './theming/icon';
 @import './theming/menu';
@@ -14,6 +15,7 @@
     @include button-theme($theme);
     @include card-theme($theme);
     @include chip-theme($theme);
+    @include data-table-theme($theme);
     @include dialog-theme($theme);
     @include icon-theme($theme);
     @include menu-theme($theme);
@@ -43,6 +45,10 @@
         divider: rgba(0, 0, 0, .12),
         primary: $primary,
         accent: $accent,
+        table: (
+            selected: #F5F5F5,
+            hover: #EEEEEE,
+        ),
     );
 }
 
@@ -66,5 +72,9 @@
         divider: rgba(255, 255, 255, .12),
         primary: $primary,
         accent: $accent,
+        table: (
+            selected: #303030,
+            hover: #212121,
+        ),
     );
 }

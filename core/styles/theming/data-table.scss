@@ -1,0 +1,26 @@
+@import './utils';
+
+@mixin data-table-theme($theme) {
+    .umd-data-table {
+        color: umd-theme-color($theme, text, primary);
+
+        th:not(.umd-data-table--sorted) {
+            color: umd-theme-color($theme, text, secondary);
+        }
+
+        tr:not(:last-of-type) td, th {
+            border-bottom: 1px solid map-get($theme, divider);
+        }
+
+        tbody tr {
+            &:hover {
+                background-color: umd-theme-color($theme, table, hover);
+            }
+
+            // todo: replace with selected
+            &:active {
+                background-color: umd-theme-color($theme, table, selected);
+            }
+        }
+    }
+}
