@@ -8,6 +8,7 @@
   "main": "index.js",
   "typings": "index",
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/node": "^7.0.5",
     "preact": "^7.2.1"
   },
@@ -15,6 +16,7 @@
     "preact": "^7.2.1"
   },
   "dependencies": {
+    "date-fns": "^1.28.3",
     "preact-portal": "^1.1.1"
   }
 }

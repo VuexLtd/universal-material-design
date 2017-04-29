@@ -1,0 +1,17 @@
+@import './utils';
+
+@mixin date-picker-theme($theme) {
+    .umd-date-picker {
+        background: umd-theme-color($theme, standard, 100);
+
+        &--header {
+            background: umd-theme-color($theme, accent, A400);
+            color: umd-theme-color($theme, accent, A400, true);
+        }
+
+        td.selected {
+            background: umd-theme-color($theme, accent, A400);
+            color: umd-theme-color($theme, accent, A400, true);
+        }
+    }
+}

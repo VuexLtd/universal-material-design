@@ -5,5 +5,11 @@
   "main": "index.js",
   "repository": "https://github.com/VuexLtd/universal-material-design",
   "author": "James Birtles <james.birtles@vuex.io>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^1.28.3"
+  },
+  "devDependencies": {
+    "@types/date-fns": "^2.6.0"
+  }
 }

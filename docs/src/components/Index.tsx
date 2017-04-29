@@ -33,6 +33,22 @@ export function Index() {
                     <Ripple />
                 </div>
             </RouterLink>
+            <RouterLink href="/components/dividers">
+                <div class="preview">
+                    <Button variant="primary"></Button>
+                    <Button variant="accent"></Button>
+                    <Button>Dividers</Button>
+                    <Ripple />
+                </div>
+            </RouterLink>
+            <RouterLink href="/components/date-pickers">
+                <div class="preview">
+                    <Button variant="primary"></Button>
+                    <Button variant="accent"></Button>
+                    <Button>Date Pickers</Button>
+                    <Ripple />
+                </div>
+            </RouterLink>
         </div>
     </Content>
 }

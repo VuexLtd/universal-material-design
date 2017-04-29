@@ -1,0 +1,7 @@
+@import './utils';
+
+@mixin divider-theme($theme) {
+    .umd-divider {
+        background: map-get($theme, divider);
+    }
+}

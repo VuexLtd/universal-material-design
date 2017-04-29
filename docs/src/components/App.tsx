@@ -6,6 +6,8 @@ import { Index } from './Index';
 import { ButtonDocs } from './pages/buttons/ButtonDocs';
 import { TabDocs } from './pages/tabs/TabDocs';
 import { DataTableDocs } from './pages/data-tables/DataTableDocs';
+import { DatePickerDocs } from './pages/date-pickers/DatePickerDocs';
+import { DividerDocs } from './pages/dividers/DividerDocs';
 
 export class App extends Component<{}, {}> {
 	public state = {
@@ -35,6 +37,8 @@ export class App extends Component<{}, {}> {
                 <Route path="/components/buttons" component={ButtonDocs} />
                 <Route path="/components/tabs" component={TabDocs} />
                 <Route path="/components/data-tables" component={DataTableDocs} />
+                <Route path="/components/date-pickers" component={DatePickerDocs} />
+                <Route path="/components/dividers" component={DividerDocs} />
             </Router>
         </div>
     }
