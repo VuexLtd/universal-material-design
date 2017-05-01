@@ -13,6 +13,10 @@ isarray@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
 
+mobx@^3.0.0, mobx@^3.1.9:
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-3.1.9.tgz#ed4af9d874ff6032c7af91fc1b87d9d33122a557"
+
 object-assign@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -28,3 +32,14 @@ preact-enroute@^1.2.3:
   resolved "https://registry.yarnpkg.com/preact-enroute/-/preact-enroute-1.2.3.tgz#a9d4d0f43fd5b4939b72efb7e20688e037aa41d3"
   dependencies:
     enroute "^1.0.1"
+
+preact-mobx@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/preact-mobx/-/preact-mobx-0.1.0.tgz#0d7e6882dd701c3f5aeb370f1180417362d56fc4"
+  dependencies:
+    mobx "^3.0.0"
+    preact "^8.0.0"
+
+preact@^8.0.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-8.1.0.tgz#f035b808eebb74e46d56246b02ca0f190b6d6574"

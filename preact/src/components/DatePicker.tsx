@@ -20,8 +20,10 @@ import * as isSameDay from 'date-fns/is_same_day';
 export type DateType = Date | string | number;
 
 export interface DatePickerProps {
-    startAt?: DateType;
     date?: DateType;
+    onUpdate?: (date: Date) => void;
+    inline?: boolean;
+    landscape?: boolean;
 }
 
 function nullArray(size: number) {
@@ -30,34 +32,43 @@ function nullArray(size: number) {
 
 export class DatePicker extends Component<DatePickerProps, { currentDate?: Date, selectedDate?: Date }> {
     static defaultProps: Partial<DatePickerProps> = {
-        startAt: new Date(),
+        date: new Date(),
+        onUpdate: () => undefined,
     };
 
     constructor(props: DatePickerProps) {
         super(props);
-        this.setState({
-            currentDate: parseDate(props.startAt || props.date),
-            selectedDate: parseDate(props.date || props.startAt),
-        });
+        this.reset();
     }
 
-    public prevMonth = () => {
-        this.setState({
-            currentDate: subMonths(this.state.currentDate, 1),
-        });
+    ////
+    // Lifecycle
+    ////
+
+    public componentWillReceiveProps(props: DatePickerProps) {
+        if (props.date && !isSameDay(this.props.date, props.date)) {
+            this.selectDay(props.date);
+        }
     }
 
-    public nextMonth = () => {
-        this.setState({
-            currentDate: addMonths(this.state.currentDate, 1),
-        });
+    ////
+    // Events
+    ////
+
+    private submit = () => {
+        this.props.onUpdate(this.state.selectedDate);
+        this.setState({ currentDate: this.state.selectedDate });
     }
 
-    public selectDay(selectedDate: Date) {
-        this.setState({ selectedDate });
+    private cancel = () => {
+        this.reset();
     }
 
-    public renderWeek(start: Date) {
+    ////
+    // Render
+    ////
+
+    private renderWeek(start: Date) {
         const selected = this.state.selectedDate;
 
         let end = endOfWeek(start);
@@ -81,6 +92,10 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
 
     public render() {
         const {
+            inline,
+            landscape,
+        } = this.props;
+        const {
             currentDate,
             selectedDate,
         } = this.state;
@@ -88,6 +103,9 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
         const classList = [
             'umd-date-picker',
         ];
+
+        inline && classList.push('umd-date-picker--inline');
+        landscape && classList.push('umd-date-picker--landscape');
 
         const monthStart = startOfMonth(currentDate);
         const daysInMonthWithOffset = getDaysInMonth(monthStart) + getDay(monthStart);
@@ -104,13 +122,16 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
         return <div class={classList.join(' ')}>
             <div  class="umd-date-picker--header">
                 <h3>{formatDate(selectedDate, 'YYYY')}</h3>
-                <h1>{formatDate(selectedDate, 'ddd, MMM D')}</h1>
+                <h1>
+                    <span>{formatDate(selectedDate, 'ddd, ')}</span>
+                    <span>{formatDate(selectedDate, 'MMM D')}</span>
+                </h1>
             </div>
             <div class="umd-date-picker--calendar">
                 <div class="umd-date-picker--month-selector">
-                    <Button flat icon onClick={this.prevMonth}><Icon icon="chevron_left" /></Button>
+                    <Button flat miniFab onClick={this.prevMonth}><Icon icon="chevron_left" /></Button>
                     <h2>{formatDate(currentDate, 'MMMM YYYY')}</h2>
-                    <Button flat icon onClick={this.nextMonth}><Icon icon="chevron_right" /></Button>
+                    <Button flat miniFab onClick={this.nextMonth}><Icon icon="chevron_right" /></Button>
                 </div>
                 <table>
                     <tr>
@@ -125,10 +146,37 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
                     { weeks.map(week => this.renderWeek(week)) }
                 </table>
                 <div class="umd-date-picker--actions">
-                    <Button flat variant="accent">Cancel</Button>
-                    <Button flat variant="accent">Ok</Button>
+                    <Button flat variant="accent" disabled={inline && isSameDay(currentDate, selectedDate)} onClick={this.cancel}>{ inline ? 'Reset' : 'Cancel' }</Button>
+                    <Button flat variant="accent" onClick={this.submit}>Ok</Button>
                 </div>
             </div>
         </div>;
+    }
+
+    ////
+    // Public Api
+    ////
+
+    public reset() {
+        this.setState({
+            currentDate: parseDate(this.props.date),
+            selectedDate: parseDate(this.props.date),
+        });
+    }
+
+    public prevMonth = () => {
+        this.setState({
+            currentDate: subMonths(this.state.currentDate, 1),
+        });
+    }
+
+    public nextMonth = () => {
+        this.setState({
+            currentDate: addMonths(this.state.currentDate, 1),
+        });
+    }
+
+    public selectDay(date: DateType) {
+        this.setState({ selectedDate: parseDate(date) });
     }
 }

@@ -3,6 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "dependencies": {
-        "preact-enroute": "^1.2.3"
+        "mobx": "^3.1.9",
+        "preact-enroute": "^1.2.3",
+        "preact-mobx": "^0.1.0"
     }
 }

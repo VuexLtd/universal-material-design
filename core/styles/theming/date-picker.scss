@@ -13,5 +13,17 @@
             background: umd-theme-color($theme, accent, A400);
             color: umd-theme-color($theme, accent, A400, true);
         }
+
+        &--inline {
+            .umd-date-picker--calendar {
+                box-shadow: inset 1px 0 0 map-get($theme, divider),
+                            inset -1px -1px 0 map-get($theme, divider);
+            }
+
+            &.umd-date-picker--landscape .umd-date-picker--calendar {
+                box-shadow: inset 0 1px 0 map-get($theme, divider),
+                            inset -1px -1px 0 map-get($theme, divider);
+            }
+        }
     }
 }

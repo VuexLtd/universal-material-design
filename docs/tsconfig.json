@@ -8,6 +8,7 @@
         "outDir": "dist",
         "jsx": "react",
         "jsxFactory": "h",
+        "experimentalDecorators": true,
         "lib": [
             "dom",
             "es2015"

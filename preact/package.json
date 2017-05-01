@@ -16,7 +16,7 @@
     "preact": "^7.2.1"
   },
   "dependencies": {
-    "date-fns": "^1.28.3",
+    "date-fns": "^1.28.4",
     "preact-portal": "^1.1.1"
   }
 }

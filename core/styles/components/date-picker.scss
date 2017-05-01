@@ -1,13 +1,16 @@
 @import '../core/variables';
 
-.umd-date-picker {
-    @include umd-elevation(24);
+$umd-date-picker--radius: 2px;
+$umd-date-picker--size-portrait: 328px;
+$umd-date-picker--size-landscape: 512px;
+$umd-date-picker--header-size-landscape: 168px;
 
+.umd-date-picker {
     display: flex;
     flex-direction: column;
-    width: 296px;
+    width: $umd-date-picker--size-portrait;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: $umd-date-picker--radius;
     font-family: $umd-font-family;
 
     &--header {
@@ -24,7 +27,7 @@
             font-size: 15px;
             font-weight: 500;
             margin: 0;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             opacity: .75;
         }
     }
@@ -33,8 +36,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-bottom: -8px;
-        
+        margin-bottom: -4px;
+
         h2 {
             margin: 0 auto;
             font-size: 14px;
@@ -43,12 +46,15 @@
     }
 
     &--calendar {
+        flex: 1 0 auto;
+
         table {
             width: 100%;
             text-align: center;
             font-size: 12px;
             font-weight: 400;
-            border-spacing: 0;
+            border-collapse: separate;
+            border-spacing: 4px 0;
             padding: 0 8px;
 
             th {
@@ -72,5 +78,62 @@
     &--actions {
         display: flex;
         justify-content: flex-end;
+        margin-top: 12px;
+    }
+
+    &--inline {
+        &:not(.umd-date-picker--landscape) .umd-date-picker--calendar {
+            border-bottom-left-radius: $umd-date-picker--radius + 1px;
+            border-bottom-right-radius: $umd-date-picker--radius + 1px;
+        }
+
+        &.umd-date-picker--landscape .umd-date-picker--calendar {
+            border-top-right-radius: $umd-date-picker--radius + 1px;
+            border-bottom-right-radius: $umd-date-picker--radius + 1px;
+        }
+    }
+
+    &:not(&--inline) {
+        @include umd-elevation(24);
+    }
+
+    &--landscape {
+        width: $umd-date-picker--size-landscape;
+        flex-direction: row;
+
+        .umd-date-picker--header {
+            width: $umd-date-picker--header-size-landscape;
+            padding: 16px 16px;
+            box-sizing: border-box;
+
+            h1 {
+                display: flex;
+                flex-direction: column;
+
+                :first-child {
+                    margin-bottom: 16px;
+                }
+            }
+        }
+
+        .umd-date-picker--calendar {
+            table {
+                border-spacing: 15px 0;
+                padding: 0;
+
+                td, th {
+                    height: 32px;
+                }
+            }
+        }
+
+        .umd-date-picker--actions {
+            margin-top: 0;
+        }
+
+        .umd-date-picker--month-selector {
+            margin-bottom: -8px;
+            padding: 0 3px;
+        }
     }
 }
