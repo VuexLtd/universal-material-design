@@ -1,6 +1,4 @@
-import { h, Component } from 'preact';
-import { Icon } from './Icon';
-import { Button } from './Button';
+import { h, Component, render } from 'preact';
 import * as getDaysInMonth from 'date-fns/get_days_in_month';
 import * as setMonth from 'date-fns/set_month';
 import * as formatDate from 'date-fns/format';
@@ -17,11 +15,16 @@ import * as addMonths from 'date-fns/add_months';
 import * as subMonths from 'date-fns/sub_months';
 import * as isSameDay from 'date-fns/is_same_day';
 
+import { PassthroughProps, PropBuilder } from '../props';
+import { Icon } from './Icon';
+import { Button } from './Button';
+
 export type DateType = Date | string | number;
 
-export interface DatePickerProps {
+export interface DatePickerProps extends PassthroughProps {
     date?: DateType;
     onUpdate?: (date: Date) => void;
+    onCancel?: () => void;
     inline?: boolean;
     landscape?: boolean;
 }
@@ -34,6 +37,7 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
     static defaultProps: Partial<DatePickerProps> = {
         date: new Date(),
         onUpdate: () => undefined,
+        onCancel: () => undefined,
     };
 
     constructor(props: DatePickerProps) {
@@ -61,6 +65,7 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
     }
 
     private cancel = () => {
+        this.props.onCancel();
         this.reset();
     }
 
@@ -100,12 +105,10 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
             selectedDate,
         } = this.state;
 
-        const classList = [
-            'umd-date-picker',
-        ];
-
-        inline && classList.push('umd-date-picker--inline');
-        landscape && classList.push('umd-date-picker--landscape');
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-date-picker')
+            .maybeClass('&--inline', inline)
+            .maybeClass('&--landscape', landscape);
 
         const monthStart = startOfMonth(currentDate);
         const daysInMonthWithOffset = getDaysInMonth(monthStart) + getDay(monthStart);
@@ -119,7 +122,7 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
             weeks.push(date);
         }
 
-        return <div class={classList.join(' ')}>
+        return <div {...pb.render()}>
             <div  class="umd-date-picker--header">
                 <h3>{formatDate(selectedDate, 'YYYY')}</h3>
                 <h1>
@@ -178,5 +181,106 @@ export class DatePicker extends Component<DatePickerProps, { currentDate?: Date,
 
     public selectDay(date: DateType) {
         this.setState({ selectedDate: parseDate(date) });
+    }
+}
+
+export class DatePickerInput extends Component<DatePickerProps, {}> {
+    private pickerEl: HTMLElement;
+
+    pickerStyles = {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        transform: '',
+        display: 'none',
+    }
+
+    public componentDidMount() {
+        this.updatePickerPosition();
+        const input = this.findInput();
+        input.addEventListener('focus', this.show);
+    }
+
+    public componentWillUnmount() {
+        if (!this.pickerEl) {
+            return;
+        }
+
+        const input = this.findInput();
+        input.removeEventListener('focus', this.show);
+
+        this.pickerEl.parentNode.removeChild(this.pickerEl);
+    }
+
+    public componentDidUpdate(props) {
+		for (let i in props) {
+			if (props[i] !== this.props[i]) {
+				return this.renderPicker();
+			}
+		}
+	}
+
+    public updatePickerPosition(rerender: boolean = true) {
+        const bcr = this.base.getBoundingClientRect();
+        this.pickerStyles = {
+            ...this.pickerStyles,
+            transform: `translate(${bcr.left}px, ${bcr.top + bcr.height}px)`,
+        };
+
+        if (rerender) {
+            this.renderPicker();
+        }
+    }
+
+    public show = () => {
+        this.pickerStyles = { ...this.pickerStyles, display: 'block' };
+        this.renderPicker();
+    }
+
+    public hide = () => {
+        this.pickerStyles = { ...this.pickerStyles, display: 'none' };
+        this.renderPicker();
+    }
+
+    private findInput() {
+        if (this.base.tagName === 'INPUT') {
+            return this.base;
+        }
+
+        return this.base.querySelector('input');
+    }
+
+    public renderPicker() {
+        const props: any = {
+            ...this.props,
+            inline: false,
+            onCancel: () => {
+                if (this.props.onCancel) {
+                    this.props.onCancel();
+                }
+
+                this.hide();
+            },
+            onUpdate: (date: Date) => {
+                if (this.props.onUpdate) {
+                    this.props.onUpdate(date);
+                }
+
+                this.hide();
+            },
+        };
+        this.pickerEl = render(
+            <div style={this.pickerStyles}>
+                <DatePicker {...props} />
+            </div>,
+            document.body,
+            this.pickerEl
+        ) as HTMLElement;
+    }
+
+    public render() {
+        const { children } = this.props;
+
+        return children[0];
     }
 }

@@ -4,6 +4,7 @@ import {
     Card,
     CardText,
     DatePicker,
+    DatePickerInput,
     TextField,
 } from '@material-design/preact';
 import { observable, action, useStrict } from 'mobx';
@@ -44,13 +45,17 @@ export class DatePickerDocs extends Component<any, any> {
                 <CardText>
                     <div style="display: flex; margin-bottom: 32px;">
                         <div>
-                            <TextField variant="accent" label="Date" value={this.date.toLocaleString()} />
-                            <DatePicker
+                            <DatePickerInput
+                                date={this.date}
+                                onUpdate={this.setDate}>
+                                <TextField variant="accent" label="Date" value={this.date.toLocaleString()} />
+                            </DatePickerInput>
+                            { /*<DatePicker
                                 inline={this.isInline}
                                 landscape={this.isLandscape}
                                 date={this.date}
                                 onUpdate={this.setDate}
-                            />
+                            /> */ }
                         </div>
                         <div class="umd-type--body-1" style="padding-left: 32px;">
                             <div>

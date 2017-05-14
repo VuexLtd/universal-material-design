@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
 
-export interface ToolbarProps {
+import { PassthroughProps, PropBuilder } from '../props';
+
+export interface ToolbarProps extends PassthroughProps {
     type?: 'app';
     variant?: string;
     flat?: boolean;
@@ -20,16 +22,13 @@ export class Toolbar extends Component<ToolbarProps, {}> {
             variant,
             flat,
         } = this.props;
-
-        const toolbarClasses = [
-            'umd-toolbar',
-            `umd-toolbar--${type}`
-        ];
-
-        flat && toolbarClasses.push('umd-toolbar--flat');
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-toolbar')
+            .addClass(`&--${type}`)
+            .maybeClass('&--flat', flat)
 
         return (
-            <div class={toolbarClasses.join(' ')} data-umd-variant={variant}>
+            <div {...pb.render()} data-umd-variant={variant}>
                 {children}
             </div>
         )

@@ -1,7 +1,11 @@
 import { h, Component } from 'preact';
 
-export class Divider extends Component<{}, {}> {
+import { PassthroughProps, PropBuilder } from '../props';
+
+export class Divider extends Component<PassthroughProps, {}> {
     public render() {
-        return <div class="umd-divider"></div>;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-divider');
+        return <div {...pb.render()}></div>;
     }
 }

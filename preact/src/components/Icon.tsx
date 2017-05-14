@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
 
-export interface IconProps {
+import { PassthroughProps, PropBuilder } from '../props';
+
+export interface IconProps extends PassthroughProps {
     /**
      * The name of the icon.
      * A list of supported icons can be found here: https://material.io/icons/
@@ -27,15 +29,11 @@ export class Icon extends Component<IconProps, {}> {
             size,
         } = this.props;
 
-        const iconClasses = [
-            'umd-icon',
-            `umd-icon--size-${size}`
-        ];
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-icon')
+            .addClass(`&--size-${size}`)
+            .maybeClass('&--no-clearance', noClearance)
 
-        if (noClearance) {
-            iconClasses.push('umd-icon--no-clearance');
-        }
-
-        return <i class={iconClasses.join(' ')}>{icon}</i>;
+        return <i {...pb.render()}>{icon}</i>;
     }
 }

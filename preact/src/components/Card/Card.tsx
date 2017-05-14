@@ -1,61 +1,79 @@
 import { h, Component } from 'preact';
 
-export class Card extends Component<{ fill?: boolean, style?: string | { [key: string]: any } }, {}> {
+import { PassthroughProps, PropBuilder } from '../../props';
+
+export class Card extends Component<{ fill?: boolean } & PassthroughProps, {}> {
     public render() {
-        const { children, fill, style } = this.props;
+        const { children, fill } = this.props;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-card')
+            .maybeClass('&--full-width', fill);
 
-        const classes = ['umd-card'];
-        fill && classes.push('umd-card--full-width');
-
-        return <div class={classes.join(' ')} style={style}>{children}</div>;
+        return <div {...pb.render()}>{children}</div>;
     }
 }
 
-export class CardText extends Component<{}, {}> {
-    public render() {
-        const { children } = this.props;
-        return <div class="umd-card-text umd-card--includes-padding">{children}</div>;
-    }
-}
-
-export class CardMedia extends Component<{}, {}> {
+export class CardText extends Component<PassthroughProps, {}> {
     public render() {
         const { children } = this.props;
-        return <div class="umd-card-media">{children}</div>;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-card-text')
+            .addClass('umd-card--includes-padding');
+
+        return <div {...pb.render()}>{children}</div>;
     }
 }
 
-export class CardTitle extends Component<{}, {}> {
+export class CardMedia extends Component<PassthroughProps, {}> {
     public render() {
         const { children } = this.props;
-        return <div class="umd-card-title umd-card--includes-padding">{children}</div>;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-card-media');
+
+        return <div {...pb.render()}>{children}</div>;
     }
 }
 
-export class CardSubtitle extends Component<{}, {}> {
+export class CardTitle extends Component<PassthroughProps, {}> {
     public render() {
         const { children } = this.props;
-        return <div class="umd-card-subtitle umd-card--includes-padding">{children}</div>;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-card-title')
+            .addClass('umd-card--includes-padding');
+
+        return <div {...pb.render()}>{children}</div>;
     }
 }
 
-export class CardActions extends Component<{ vertical?: boolean }, {}> {
+export class CardSubtitle extends Component<PassthroughProps, {}> {
+    public render() {
+        const { children } = this.props;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-card-subtitle')
+            .addClass('umd-card--includes-padding');
+
+        return <div {...pb.render()}>{children}</div>;
+    }
+}
+
+export class CardActions extends Component<{ vertical?: boolean } & PassthroughProps, {}> {
     public render() {
         const { children, vertical } = this.props;
-        const classes = ['umd-card-actions'];
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-card-actions')
+            .maybeClass('&--vertical', vertical)
 
-        if (vertical) {
-            classes.push('umd-card-actions--vertical');
-        }
-
-        return <div class={classes.join(' ')}>{children}</div>;
+        return <div {...pb.render()}>{children}</div>;
     }
 }
 
-export class CardMediaArea extends Component<{ media: JSX.Element }, {}> {
+export class CardMediaArea extends Component<{ media: JSX.Element } & PassthroughProps, {}> {
     public render() {
         const { children, media } = this.props;
-        return <div class="umd-card-media-area">
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-card-media-area');
+
+        return <div {...pb.render()}>
             <div class="umd-card-media-area__content">{children}</div>
             <div class="umd-card-media-area__media">{media}</div>
         </div>;

@@ -1,7 +1,9 @@
 import { h, Component, PreactHTMLAttributes } from 'preact';
 import Portal from 'preact-portal';
 
-export interface DialogProps {
+import { PassthroughProps, PropBuilder } from '../props';
+
+export interface DialogProps extends PassthroughProps {
 }
 
 export class Dialog extends Component<DialogProps, { visible?: boolean; }> {
@@ -30,12 +32,15 @@ export class Dialog extends Component<DialogProps, { visible?: boolean; }> {
             visible
         } = this.state;
 
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-dialog');
+
         return (
             <Portal into="body">
                 { visible && <div ref={container => this.container = container}
                     class="umd-dialog-container"
                     onClick={this.hideIfContainer}>
-                    <div class="umd-dialog">
+                    <div {...pb.render()}>
                         {children}
                     </div>
                 </div> }
@@ -44,30 +49,36 @@ export class Dialog extends Component<DialogProps, { visible?: boolean; }> {
     }
 }
 
-export class DialogTitle extends Component<{}, {}> {
+export class DialogTitle extends Component<PassthroughProps, {}> {
     public render() {
         const { children } = this.props;
-        return <div class="umd-dialog-title umd-dialog--includes-padding">{children}</div>;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-dialog-title')
+            .addClass('umd-dialog--includes-padding');
+
+        return <div {...pb.render()}>{children}</div>;
     }
 }
 
-export class DialogContent extends Component<{}, {}> {
+export class DialogContent extends Component<PassthroughProps, {}> {
     public render() {
         const { children } = this.props;
-        return <div class="umd-dialog-content umd-dialog--includes-padding">{children}</div>;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-dialog-content')
+            .addClass('umd-dialog--includes-padding');
+
+        return <div {...pb.render()}>{children}</div>;
     }
 }
 
 
-export class DialogActions extends Component<{ vertical?: boolean }, {}> {
+export class DialogActions extends Component<{ vertical?: boolean } & PassthroughProps, {}> {
     public render() {
         const { children, vertical } = this.props;
-        const classes = ['umd-dialog-actions'];
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-dialog-actions')
+            .maybeClass('&--vertical', vertical);
 
-        if (vertical) {
-            classes.push('umd-dialog-actions--vertical');
-        }
-
-        return <div class={classes.join(' ')}>{children}</div>;
+        return <div {...pb.render()}>{children}</div>;
     }
 }

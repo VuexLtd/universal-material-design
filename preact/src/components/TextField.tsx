@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
 
-export interface TextFieldProps {
+import { PassthroughProps, PropBuilder } from '../props';
+
+export interface TextFieldProps extends PassthroughProps {
     type?: 'text' | 'password' | 'email' | 'number' | 'textarea';
     label?: string;
     disabled?: boolean;
@@ -68,19 +70,15 @@ export class TextField extends Component<TextFieldProps, TextFieldState> {
             value,
         } = this.state;
 
-        const textfieldClasses = ['umd-textfield'];
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-textfield')
+            .maybeClass('&--focused', hasFocus)
+            .maybeClass('&--disabled', disabled)
+
         const labelClasses = ['umd-textfield__label'];
 
         if (hasFocus || !!value) {
             labelClasses.push('umd-textfield__label--floating');
-
-            if (hasFocus) {
-                textfieldClasses.push('umd-textfield--focused');
-            }
-        }
-
-        if (disabled) {
-            textfieldClasses.push('umd-textfield--disabled');
         }
 
         let input;
@@ -105,7 +103,7 @@ export class TextField extends Component<TextFieldProps, TextFieldState> {
         }
 
         return (
-            <label class={textfieldClasses.join(' ')} data-umd-variant={variant}>
+            <label {...pb.render()} data-umd-variant={variant}>
                 <span class={labelClasses.join(' ')}>{label}</span>
                 {input}
                 <span class="umd-textfield__underline"></span>

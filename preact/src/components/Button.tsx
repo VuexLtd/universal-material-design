@@ -1,8 +1,9 @@
 import { h, Component } from 'preact';
 
+import { PassthroughProps, PropBuilder } from '../props';
 import { Ripple } from './Ripple';
 
-export interface ButtonProps {
+export interface ButtonProps extends PassthroughProps {
     type?: 'button' | 'submit';
     dense?: boolean;
     flat?: boolean;
@@ -41,36 +42,18 @@ export class Button extends Component<ButtonProps, {}> {
 
             onClick,
         } = this.props;
-
-        const btnClasses = ['umd-button'];
-
-        if (dense) {
-            btnClasses.push('umd-button--dense');
-        }
-
-        if (flat) {
-            btnClasses.push('umd-button--flat');
-        }
-
-        if (disabled) {
-            btnClasses.push('umd-button--disabled');
-        }
-
-        if (icon) {
-            btnClasses.push('umd-button--icon');
-        }
-
-        if (fab) {
-            btnClasses.push('umd-button--fab');
-        }
-
-        if (miniFab) {
-            btnClasses.push('umd-button--mini-fab');
-        }
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-button')
+            .maybeClass('&--dense', dense)
+            .maybeClass('&--flat', flat)
+            .maybeClass('&--disabled', disabled)
+            .maybeClass('&--icon', icon)
+            .maybeClass('&--fab', fab)
+            .maybeClass('&--mini-fab', miniFab);
 
         return (
             <button
-                class={btnClasses.join(' ')}
+                {...pb.render()}
                 type={type}
                 onClick={onClick}
                 data-umd-variant={variant}>

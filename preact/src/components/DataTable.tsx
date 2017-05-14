@@ -1,9 +1,10 @@
 import { h, Component, cloneElement } from 'preact';
 import { incrEnum } from '@material-design/core';
 
+import { PassthroughProps, PropBuilder } from '../props';
 import { Icon } from './Icon';
 
-export interface TableCellProps {
+export interface TableCellProps extends PassthroughProps {
     index?: number;
     numeric?: boolean;
     fill?: boolean;
@@ -21,7 +22,7 @@ export class Table {
     headers = new Map<number, TableCellProps>();
 }
 
-export class DataTable extends Component<{}, {}> {
+export class DataTable extends Component<PassthroughProps, {}> {
     private table = new Table();
 
     public getChildContext() {
@@ -32,11 +33,14 @@ export class DataTable extends Component<{}, {}> {
 
     public render() {
         const { children } = this.props;
-        return <table class="umd-data-table">{children}</table>;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-data-table');
+
+        return <table {...pb.render()}>{children}</table>;
     }
 }
 
-export class TableHead extends Component<{}, {}> {
+export class TableHead extends Component<PassthroughProps, {}> {
     public getChildContext() {
         return {
             umdDataTableIsHeader: true,
@@ -45,22 +49,28 @@ export class TableHead extends Component<{}, {}> {
 
     public render() {
         const { children } = this.props;
-        return <thead><TableRow>{children}</TableRow></thead>
+        const pb = new PropBuilder(this);
+
+        return <thead {...pb.render()}><TableRow>{children}</TableRow></thead>
     }
 }
 
-export class TableBody extends Component<{}, {}> {
+export class TableBody extends Component<PassthroughProps, {}> {
     public render() {
         const { children } = this.props;
-        return <tbody>{children}</tbody>
+        const pb = new PropBuilder(this);
+
+        return <tbody {...pb.render()}>{children}</tbody>
     }
 }
 
-export class TableRow extends Component<{}, {}> {
+export class TableRow extends Component<PassthroughProps, {}> {
     public render() {
         let { children } = this.props;
+        const pb = new PropBuilder(this);
         children = children.map((child, index) => cloneElement(child, { index }))
-        return <tr>{children}</tr>
+
+        return <tr {...pb.render()}>{children}</tr>
     }
 }
 
@@ -118,31 +128,20 @@ export class TableCell extends Component<TableCellProps, { sort: SortOrder }> {
             if (numeric == null) numeric = header.numeric;
         }
 
-        const classes = [];
-
-        if (fill) {
-            classes.push('umd-data-table--fill');
-        }
-
-        if (numeric) {
-            classes.push('umd-data-table--numeric');
-        }
-
-        if (sortable) {
-            classes.push('umd-data-table--sortable');
-
-            if (sort !== SortOrder.None) {
-                classes.push('umd-data-table--sorted');
-            }
-        }
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-data-table')
+            .maybeClass('&--fill', fill)
+            .maybeClass('&--numeric', numeric)
+            .maybeClass('&--sortable', sortable)
+            .maybeClass('&--sorted', sortable && sort !== SortOrder.None)
 
         if (this.context.umdDataTableIsHeader) {
-            return <th onClick={this.toggleSortOrder} class={classes.join(' ')}>
+            return <th onClick={this.toggleSortOrder} {...pb.render()}>
                 { sortable && sort !== SortOrder.None && <Icon size="dense" icon={`arrow_${sort === SortOrder.Ascending ? 'upward' : 'downward'}`} /> }
                 {children}
             </th>;
         }
 
-        return <td class={classes.join(' ')}>{children}</td>
+        return <td {...pb.render()}>{children}</td>
     }
 }

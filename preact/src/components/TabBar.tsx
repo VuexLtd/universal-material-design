@@ -1,7 +1,9 @@
 import { h, Component, cloneElement } from 'preact';
+
+import { PassthroughProps, PropBuilder } from '../props';
 import { Ripple } from './Ripple';
 
-export interface TabBarProps {
+export interface TabBarProps extends PassthroughProps {
     variant?: string;
     selected?: number;
     onSelected?: (tab: string | number) => void;
@@ -23,10 +25,11 @@ export class TabBar extends Component<TabBarProps, { underlineTransform?: string
             children,
             variant,
         } = this.props;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-tab-bar');
 
         const selected = this.state.selected == null ? this.props.selected : this.state.selected;
 
-        const classes = ['umd-tab-bar'];
         const tabs = children.map((child, i) => cloneElement(child, {
             onClick: ({ target }: MouseEvent) => this.selectTab(i, target as HTMLElement),
             active: selected === i,
@@ -36,7 +39,7 @@ export class TabBar extends Component<TabBarProps, { underlineTransform?: string
             transform: this.state.underlineTransform
         };
 
-        return <div class={classes.join(' ')} data-umd-variant={variant}>
+        return <div {...pb.render()} data-umd-variant={variant}>
             {tabs}
             <div class="umd-tab-bar__underline" style={underlineStyles}></div>
         </div>;
@@ -54,18 +57,17 @@ export class TabBar extends Component<TabBarProps, { underlineTransform?: string
     }
 }
 
-export class TabLabel extends Component<{ onClick?: () => void, active?: boolean }, {}> {
+export class TabLabel extends Component<{ onClick?: () => void, active?: boolean } & PassthroughProps, {}> {
     public render() {
         const {
             children,
             active,
         } = this.props;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-tab-label')
+            .maybeClass('&--active', active);
 
-        const classes = ['umd-tab-label'];
-
-        active && classes.push('umd-tab-label--active');
-
-        return <div onClick={this.props.onClick} class={classes.join(' ')}>
+        return <div onClick={this.props.onClick} {...pb.render()}>
             {children}
             <Ripple />
         </div>;

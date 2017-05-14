@@ -1,9 +1,10 @@
 import { h, Component, ComponentProps } from 'preact';
 import Portal from 'preact-portal';
 
+import { PassthroughProps, PropBuilder } from '../props';
 import { Ripple } from './Ripple';
 
-export interface MenuProps {
+export interface MenuProps extends PassthroughProps {
     position?: string;
 }
 
@@ -51,12 +52,15 @@ export class Menu extends Component<MenuProps, { visible?: boolean; }> {
             visible
         } = this.state;
 
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-menu');
+
         return (
             <Portal into="body">
                 { visible && <div ref={container => this.container = container}
                     class="umd-menu-container"
                     onClick={() => this.close()}>
-                    <div class="umd-menu" style={this.menuStyle}>
+                    <div {...pb.render()} style={this.menuStyle}>
                         {children}
                     </div>
                 </div> }
@@ -75,9 +79,17 @@ export class Menu extends Component<MenuProps, { visible?: boolean; }> {
     }
 }
 
-export function MenuItem({ children }: ComponentProps<any>) {
-    return <div class="umd-menu-item">
-        {children}
-        <Ripple />
-    </div>;
+export class MenuItem extends Component<PassthroughProps, {}> {
+    public render() {
+        const {
+            children
+        } = this.props;
+        const pb = new PropBuilder(this)
+            .withBaseClass('umd-menu-item');
+
+        return <div {...pb.render()}>
+            {children}
+            <Ripple />
+        </div>;
+    }
 }
