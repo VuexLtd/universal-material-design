@@ -19,8 +19,10 @@ export class PropBuilder {
         }
     }
 
-    public withBaseClass(className: string): this {
-        this.addClass(className);
+    public withBaseClass(className: string, include = true): this {
+        if (include) {
+            this.addClass(className);
+        }
         this.baseClass = className;
         return this;
     }

@@ -129,7 +129,7 @@ export class TableCell extends Component<TableCellProps, { sort: SortOrder }> {
         }
 
         const pb = new PropBuilder(this)
-            .withBaseClass('umd-data-table')
+            .withBaseClass('umd-data-table', false)
             .maybeClass('&--fill', fill)
             .maybeClass('&--numeric', numeric)
             .maybeClass('&--sortable', sortable)
